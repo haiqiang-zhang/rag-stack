@@ -1,0 +1,30 @@
+{
+  "empirical_coefficients": {
+    "cache_random_access_latency_multiplier": 5.460465841818943,
+    "cycles_per_heap_op": 503.63916103121295,
+    "cycles_per_visited_probe": 48.662741781324804,
+    "hops_per_upper_layer": 46.56989270691491
+  },
+  "fit_metadata": {
+    "dataset_configs": [
+      "glove",
+      "cifar",
+      "dragonball",
+      "sift",
+      "gist",
+      "deep"
+    ],
+    "mape_latency_pct": 20.054,
+    "max_ape_latency_pct": 131.883,
+    "num_trials": 120
+  },
+  "hardware_key": "epyc_7742_2s",
+  "hardware_model_parameters": {
+    "dram_random_access_latency_ns": 100.0,
+    "numa_local_bytes": 0,
+    "numa_remote_bw_ceiling": 0.06,
+    "scattered_bw_ceiling": 0.35,
+    "simd_efficiency": 0.55
+  },
+  "profile_kind": "faiss_hnsw_exact_cpu"
+}

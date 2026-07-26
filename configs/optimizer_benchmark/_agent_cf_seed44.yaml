@@ -1,0 +1,20 @@
+defaults:
+  gt_budget: 50
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/agent_cf_gpu_s44
+  seeds: [44]
+  auto_analyze: false
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: rag_historical_surrogate
+  params:
+    yaml_path: configs/rag_stack/sgs_h100_ax_correctness.yaml
+    use_gpu: true
+    sub_metrics: [deepeval_answer_correctness, deepeval_answer_relevancy, deepeval_context_recall, deepeval_context_precision, retrieval_recall]
+optimizers:
+- type: agent_qnehvi
+  name: agent_mo_inject
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash
+    use_gpu: true

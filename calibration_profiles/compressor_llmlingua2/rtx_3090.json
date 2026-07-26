@@ -1,0 +1,187 @@
+{
+  "correlation": 0.9999740158805315,
+  "cpu_hardware_key": "epyc_7313",
+  "demand_axes": [
+    "n_chunks",
+    "chunk_tokens"
+  ],
+  "fit_mape": 0.011742683304025286,
+  "fixed_ms": 3.6674863644028006,
+  "grid": [
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 11.132,
+      "n_chunks": 1,
+      "predicted_ms": 10.771,
+      "rel_err": -0.0325
+    },
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 17.707,
+      "n_chunks": 2,
+      "predicted_ms": 17.874,
+      "rel_err": 0.0094
+    },
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 33.153,
+      "n_chunks": 4,
+      "predicted_ms": 32.08,
+      "rel_err": -0.0324
+    },
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 61.327,
+      "n_chunks": 8,
+      "predicted_ms": 60.492,
+      "rel_err": -0.0136
+    },
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 116.745,
+      "n_chunks": 16,
+      "predicted_ms": 117.316,
+      "rel_err": 0.0049
+    },
+    {
+      "chunk_tokens": 64,
+      "measured_ms": 230.342,
+      "n_chunks": 32,
+      "predicted_ms": 230.964,
+      "rel_err": 0.0027
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 11.047,
+      "n_chunks": 1,
+      "predicted_ms": 11.172,
+      "rel_err": 0.0114
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 18.394,
+      "n_chunks": 2,
+      "predicted_ms": 18.677,
+      "rel_err": 0.0154
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 34.545,
+      "n_chunks": 4,
+      "predicted_ms": 33.688,
+      "rel_err": -0.0248
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 64.023,
+      "n_chunks": 8,
+      "predicted_ms": 63.708,
+      "rel_err": -0.0049
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 123.257,
+      "n_chunks": 16,
+      "predicted_ms": 123.748,
+      "rel_err": 0.004
+    },
+    {
+      "chunk_tokens": 128,
+      "measured_ms": 244.075,
+      "n_chunks": 32,
+      "predicted_ms": 243.828,
+      "rel_err": -0.001
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 11.935,
+      "n_chunks": 1,
+      "predicted_ms": 11.976,
+      "rel_err": 0.0035
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 19.894,
+      "n_chunks": 2,
+      "predicted_ms": 20.285,
+      "rel_err": 0.0197
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 37.835,
+      "n_chunks": 4,
+      "predicted_ms": 36.903,
+      "rel_err": -0.0246
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 70.233,
+      "n_chunks": 8,
+      "predicted_ms": 70.139,
+      "rel_err": -0.0013
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 135.95,
+      "n_chunks": 16,
+      "predicted_ms": 136.611,
+      "rel_err": 0.0049
+    },
+    {
+      "chunk_tokens": 256,
+      "measured_ms": 270.621,
+      "n_chunks": 32,
+      "predicted_ms": 269.555,
+      "rel_err": -0.0039
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 12.961,
+      "n_chunks": 1,
+      "predicted_ms": 13.182,
+      "rel_err": 0.0171
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 22.175,
+      "n_chunks": 2,
+      "predicted_ms": 22.697,
+      "rel_err": 0.0236
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 41.877,
+      "n_chunks": 4,
+      "predicted_ms": 41.727,
+      "rel_err": -0.0036
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 78.792,
+      "n_chunks": 8,
+      "predicted_ms": 79.787,
+      "rel_err": 0.0126
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 154.589,
+      "n_chunks": 16,
+      "predicted_ms": 155.906,
+      "rel_err": 0.0085
+    },
+    {
+      "chunk_tokens": 448,
+      "measured_ms": 308.62,
+      "n_chunks": 32,
+      "predicted_ms": 308.145,
+      "rel_err": -0.0015
+    }
+  ],
+  "hardware_key": "rtx_3090",
+  "model": "llmlingua2",
+  "note": "Wall-clock LINEAR fit (NOT GenZ roofline): latency_ms = fixed + n_chunks*(per_chunk + per_token*chunk_tokens). llmlingua2 is CPU/Python-bound on .pure() (per-token merge/regroup, chunk/tokenize, tiktoken); GPU forward ~20-40%. Cost is ~linear in #chunks and chunk_tokens, NOT FLOP-shaped \u2014 GenZ gave 40% MAPE.",
+  "per_chunk_ms": 6.701036126539473,
+  "per_token_ms": 0.006281007694268759,
+  "profile_kind": "compressor_llmlingua2",
+  "service_unit": "milliseconds_per_fused_compressor_call"
+}

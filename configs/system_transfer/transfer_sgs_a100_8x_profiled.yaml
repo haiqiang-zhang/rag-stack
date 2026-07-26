@@ -1,0 +1,100 @@
+# Profile-strict system-transfer target for the SGS 8x A100 80GB PCIe host.
+#
+# The physical specification and CM-owned search space are identical to
+# transfer_sgs_a100_8x.yaml.  This benchmark variant requires every CM
+# component to resolve through an exact calibration profile; physical-spec
+# fallback is intentionally disabled.
+system_transfer:
+  n_refine_iterations: 20
+  generator_backend: vllm
+  # Experiment policy is explicit here instead of being inherited implicitly
+  # from the historical source project. These are whole-section replacements;
+  # the target quality objective remains answer correctness only, while the
+  # optimizer receives the four current diagnostic metrics.
+  rag_config_overrides:
+    optimizer:
+      type: agent_qnehvi
+      params:
+        seed: 43
+        n_both_init: 10
+        agent_model: deepseek-v4-flash
+        agent_strict: true
+        agent_wall_timeout_s: 150
+        n_candidates: 256
+    eval_backend_setting:
+      combined_quality:
+        mode: mean
+        metrics:
+          - deepeval_answer_correctness
+      metrics:
+        - metric_name: deepeval_answer_correctness
+          model: openai/deepseek/deepseek-v4-flash
+          description: GEval factual correctness of the generated answer vs the gold answer — THE optimized quality target, score in [0,1]. End-to-end — anything that changes the retrieved evidence OR the generation can move it, so read the sub-metrics below as a breakdown of where correctness is won or lost.
+        - metric_name: deepeval_faithfulness
+          model: openai/deepseek/deepseek-v4-flash
+          description: Is the answer grounded in the retrieved context — no claims that contradict or aren't supported by it (a hallucination check)? Mainly a generation-side signal (model, temperature, prompt), but a noisy or off-topic context makes grounding harder, so weak retrieval can pull it down too.
+        - metric_name: deepeval_context_precision
+          model: openai/deepseek/deepseek-v4-flash
+          description: Of the chunks fed to the generator, how many are genuinely relevant and are the relevant ones ranked first? A retrieval-quality signal — chunking, index fidelity, top_k, reranking all move it — though query expansion upstream changes what gets retrieved. In direct tension with recall — grabbing more chunks usually lowers precision.
+        - metric_name: deepeval_context_recall
+          model: openai/deepseek/deepseek-v4-flash
+          description: Does the retrieved context actually contain the information needed to answer (coverage of the gold facts)? Retrieval-side — chunk size, index, top_k, reranker. Loosening retrieval (bigger top_k / chunks) raises recall but tends to cost precision and can bury the answer among distractors.
+      submetric_query_subset: 15
+system:
+  system_hardware: sgs_a100x8_epyc7742
+  rag_cm:
+    calibration_mode: strict
+  performance_source: cost_model
+  system_space_owner: cost_model
+  gpu: A100_80GB_GPU
+  cpu:
+    hardware_key: epyc_7742_2s
+    num_cores: 128
+    peak_flops: 1.39264e13
+    peak_int_ops: 6.9632e12
+    mem_bandwidth: 227400300000
+    mem_bandwidth_1t: 21993800000
+    memory_tiers:
+      - {name: L2, bandwidth: 6887002665021, bandwidth_1t: 103079200000, capacity: 524288}
+      - {name: L3, bandwidth: 3159966930492, bandwidth_1t: 63586200000, capacity: 16777216}
+      - {name: ddr, bandwidth: 227400300000, bandwidth_1t: 21993800000, capacity: 1081962737664}
+    topology: {type: numa, sockets: 2, cores_per_socket: 64}
+  available_gpus: ["cuda:0", "cuda:1", "cuda:2", "cuda:3", "cuda:4", "cuda:5", "cuda:6", "cuda:7"]
+  interconnect:
+    gpu_gpu:
+      type: cuda_peer_runtime_hmm_same_socket
+      bandwidth_gbps: 0.680893523
+      latency_us: 49215.7641601565
+      fallback:
+        type: cuda_peer_runtime_hmm_cross_socket
+        bandwidth_gbps: 0.6808828765
+        latency_us: 49215.6201171875
+      links:
+        - devices: ["cuda:0", "cuda:1", "cuda:2", "cuda:3"]
+          type: cuda_peer_runtime_hmm_same_socket
+          bandwidth_gbps: 0.680893523
+          latency_us: 49215.7641601565
+        - devices: ["cuda:4", "cuda:5", "cuda:6", "cuda:7"]
+          type: cuda_peer_runtime_hmm_same_socket
+          bandwidth_gbps: 0.680893523
+          latency_us: 49215.7641601565
+    gpu_cpu:
+      type: pcie4_host_local_numa_cuda_dma
+      bandwidth_gbps: 24.622335179
+      latency_us: 2.482559979
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    faiss_num_threads: null
+    faiss_ivf_parallel_mode: 0
+  cm_search_space:
+    placement_policy: [collocated, disaggregated]
+    min_num_gpus: 1
+    max_num_gpus: 8
+    max_num_gpus_per_stage: 8
+    gpus_per_server: 8
+    max_batch_size_request: 256
+    batch_size_decode: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+    dynamic_batch_timeout_s: [0.002, 0.01, 0.05]
+    no_microbatching: true
+    allow_decode_collocation: true

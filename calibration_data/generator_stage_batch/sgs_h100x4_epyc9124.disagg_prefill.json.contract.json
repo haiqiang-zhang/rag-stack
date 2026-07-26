@@ -1,0 +1,2224 @@
+{
+  "aggregation": {
+    "batch_measurement": "middle_of_three_paired_residual_samples_tie_break_sample_index",
+    "component_window_service": "arithmetic_mean_of_selected_cycle_component_services",
+    "negative_residual": "fail_closed_no_clamp",
+    "sample_residual": "observed_service_per_cycle_s_minus_component_window_service_s"
+  },
+  "component_contract_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl.contract.json",
+  "component_contract_sha256": "c1a7ba5e372da6aa43e859524c30ff9f872b138fc0df1ee72c00bfca05a22d13",
+  "component_joins": {
+    "1": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:4:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:5:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:6:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:7:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:8:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:9:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:10:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:11:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:12:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:13:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:14:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2adb8711d6a0415888c2462ede3fbf87:256:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:384:e24f7ec2b606e5aa",
+                "2adb8711d6a0415888c2462ede3fbf87:512:e24f7ec2b606e5aa"
+              ],
+              "median_component_service_s": 0.011843903571367264,
+              "shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.011843903571367264,
+          "target_cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:15:e24f7ec2b606e5aa",
+          "target_shape": {
+            "scheduled_context_tokens": 112,
+            "scheduled_sequences": 1,
+            "scheduled_tokens": 112,
+            "token_context_product": 12544
+          }
+        }
+      ]
+    ],
+    "128": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:4:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:5:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:6:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:7:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:8:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:9:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:10:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:11:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:12:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:13:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:14:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "612e0deac93a41e78bc8eded8af21fb7:256:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:384:66cb518edcbdf155",
+                "612e0deac93a41e78bc8eded8af21fb7:512:66cb518edcbdf155"
+              ],
+              "median_component_service_s": 0.08700684849917889,
+              "shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.08700684849917889,
+          "target_cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:15:66cb518edcbdf155",
+          "target_shape": {
+            "scheduled_context_tokens": 14336,
+            "scheduled_sequences": 128,
+            "scheduled_tokens": 14336,
+            "token_context_product": 1605632
+          }
+        }
+      ]
+    ],
+    "256": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:4:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:5:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:6:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:7:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:8:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:9:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:10:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:11:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:12:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:13:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:14:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:256:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:384:7c32c0db510f1b99",
+                "75a3fa4ac9e64f4ebe298bfe110b8ebc:512:7c32c0db510f1b99"
+              ],
+              "median_component_service_s": 0.17955315765738486,
+              "shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.17955315765738486,
+          "target_cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:15:7c32c0db510f1b99",
+          "target_shape": {
+            "scheduled_context_tokens": 28672,
+            "scheduled_sequences": 256,
+            "scheduled_tokens": 28672,
+            "token_context_product": 3211264
+          }
+        }
+      ]
+    ],
+    "32": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:4:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:5:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:6:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:7:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:8:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:9:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:10:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:11:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:12:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:13:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:14:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "fedbda237aa440ad88d2b1aebc7a6f39:256:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:384:8a9e99883f01dc33",
+                "fedbda237aa440ad88d2b1aebc7a6f39:512:8a9e99883f01dc33"
+              ],
+              "median_component_service_s": 0.023035744935274122,
+              "shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.023035744935274122,
+          "target_cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:15:8a9e99883f01dc33",
+          "target_shape": {
+            "scheduled_context_tokens": 3584,
+            "scheduled_sequences": 32,
+            "scheduled_tokens": 3584,
+            "token_context_product": 401408
+          }
+        }
+      ]
+    ],
+    "64": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:4:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:5:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:6:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:7:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:8:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:9:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:10:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:11:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:12:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:13:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:14:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "2e267dad919543fb81161fff9290118e:256:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:384:8ebc821d63d67cf8",
+                "2e267dad919543fb81161fff9290118e:512:8ebc821d63d67cf8"
+              ],
+              "median_component_service_s": 0.04422649730741978,
+              "shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.04422649730741978,
+          "target_cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:15:8ebc821d63d67cf8",
+          "target_shape": {
+            "scheduled_context_tokens": 7168,
+            "scheduled_sequences": 64,
+            "scheduled_tokens": 7168,
+            "token_context_product": 802816
+          }
+        }
+      ]
+    ],
+    "8": [
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:4:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:5:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:6:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:7:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:8:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:9:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:10:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:11:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        }
+      ],
+      [
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:12:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:13:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:14:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        },
+        {
+          "bracket": [
+            {
+              "component_cycle_ids": [
+                "9c7e6891a3814adb82a9b0814cc8bf15:256:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:384:c453f051e8c50ecf",
+                "9c7e6891a3814adb82a9b0814cc8bf15:512:c453f051e8c50ecf"
+              ],
+              "median_component_service_s": 0.01914112010598183,
+              "shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "weight": 1.0
+            }
+          ],
+          "component_service_s": 0.01914112010598183,
+          "target_cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:15:c453f051e8c50ecf",
+          "target_shape": {
+            "scheduled_context_tokens": 896,
+            "scheduled_sequences": 8,
+            "scheduled_tokens": 896,
+            "token_context_product": 100352
+          }
+        }
+      ]
+    ]
+  },
+  "component_source_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl",
+  "component_source_sha256": "ffb72a3d4d7fed17b8a395d9f3f6bae30c772115300abc34dce89957332fc06b",
+  "cycle_selection": {
+    "cycles_per_sample": 4,
+    "phase": "prefill",
+    "window_policy": "parent_resume_to_all_completion_four_exact_cycles"
+  },
+  "nixl_physical_path": null,
+  "nixl_physical_sha256": null,
+  "request_contract_sha256": "421f6faf1cc328b3e35d27e6b3bf46e8a417693cdbdc56478f016710c7915a1a",
+  "role": "prefill",
+  "runs": {
+    "1": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b1.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e",
+      "telemetry_sha256": "a4a01e4f18c2c80ac1d8fc8145e2be908528a9c5edce536de4fa58e238d9e6fc",
+      "timing_run_id": "pd-prefill-timing-b1-7d6e5a1e39f04f2988117de9503e67e6"
+    },
+    "128": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b128.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97",
+      "telemetry_sha256": "671f49baf5d94ba979c9c37d41c213e7b280e2d02203f81c59d95477ff5c5aec",
+      "timing_run_id": "pd-prefill-timing-b128-19cbbf8e3ba74d0597048bc7a2effce6"
+    },
+    "256": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b256.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1",
+      "telemetry_sha256": "db1ed9a629b94846cee5c1033e5c2029bc557cab8ff1e0fb52eaea414691042e",
+      "timing_run_id": "pd-prefill-timing-b256-239586c9c00a4cdfbebce4f96bf9ab0d"
+    },
+    "32": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b32.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391",
+      "telemetry_sha256": "296ce97276daf1f296090cbae748addc330ae7b2e77df29c579f60ffb239cb24",
+      "timing_run_id": "pd-prefill-timing-b32-d5ceb386387b40e78884120c7373b9ab"
+    },
+    "64": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b64.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77",
+      "telemetry_sha256": "d1bb94406bd5051271814d4a04c90659e44d6dae64a395bca1ed3f1d6baaa3b7",
+      "timing_run_id": "pd-prefill-timing-b64-e89d8db1414d48c5a7c31971a5833320"
+    },
+    "8": {
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b8.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f",
+      "telemetry_sha256": "b6df765657ca5a1cdd79366cf2c21b590800c0b2d3c1e0b81d6ec028bdd4d130",
+      "timing_run_id": "pd-prefill-timing-b8-f19f3a04c43a49b8808cbf426b3c7cae"
+    }
+  },
+  "schema": "rag_stack.v1.direct_disagg_role_run_contract",
+  "schema_version": 1,
+  "selected_cycle_ids": {
+    "1": [
+      [
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:4:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:5:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:6:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:7:e24f7ec2b606e5aa"
+      ],
+      [
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:8:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:9:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:10:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:11:e24f7ec2b606e5aa"
+      ],
+      [
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:12:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:13:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:14:e24f7ec2b606e5aa",
+        "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:15:e24f7ec2b606e5aa"
+      ]
+    ],
+    "128": [
+      [
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:4:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:5:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:6:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:7:66cb518edcbdf155"
+      ],
+      [
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:8:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:9:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:10:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:11:66cb518edcbdf155"
+      ],
+      [
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:12:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:13:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:14:66cb518edcbdf155",
+        "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:15:66cb518edcbdf155"
+      ]
+    ],
+    "256": [
+      [
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:4:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:5:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:6:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:7:7c32c0db510f1b99"
+      ],
+      [
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:8:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:9:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:10:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:11:7c32c0db510f1b99"
+      ],
+      [
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:12:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:13:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:14:7c32c0db510f1b99",
+        "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:15:7c32c0db510f1b99"
+      ]
+    ],
+    "32": [
+      [
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:4:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:5:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:6:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:7:8a9e99883f01dc33"
+      ],
+      [
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:8:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:9:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:10:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:11:8a9e99883f01dc33"
+      ],
+      [
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:12:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:13:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:14:8a9e99883f01dc33",
+        "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:15:8a9e99883f01dc33"
+      ]
+    ],
+    "64": [
+      [
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:4:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:5:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:6:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:7:8ebc821d63d67cf8"
+      ],
+      [
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:8:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:9:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:10:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:11:8ebc821d63d67cf8"
+      ],
+      [
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:12:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:13:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:14:8ebc821d63d67cf8",
+        "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:15:8ebc821d63d67cf8"
+      ]
+    ],
+    "8": [
+      [
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:4:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:5:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:6:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:7:c453f051e8c50ecf"
+      ],
+      [
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:8:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:9:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:10:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:11:c453f051e8c50ecf"
+      ],
+      [
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:12:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:13:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:14:c453f051e8c50ecf",
+        "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:15:c453f051e8c50ecf"
+      ]
+    ]
+  },
+  "source_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.json",
+  "source_sha256": "11757489929f95608877ebcfa99aeeadf661af5e37a6489daa68986853704748",
+  "system_hardware": "sgs_h100x4_epyc9124",
+  "workload": {
+    "output_tokens": 128,
+    "prompt_tokens": 112,
+    "request_contract": {
+      "chat_template": {
+        "add_generation_prompt": true,
+        "chat_template_sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+        "source": "tokenizer.apply_chat_template",
+        "tokenize": true
+      },
+      "endpoint": "/v1/chat/completions",
+      "ignore_eos": true,
+      "ignore_eos_purpose": "calibration_exact_shape_control_not_production_stopping_policy",
+      "logprobs": true,
+      "max_tokens_policy": "workload_output_tokens",
+      "messages": [
+        {
+          "content": "w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w w",
+          "role": "user"
+        }
+      ],
+      "n": 1,
+      "rendered_prompt_token_ids_sha256": "1385e69aa05d2862d66d514c33ba08361c8402cd8d15b1659b0eaff015e3e163",
+      "rendered_prompt_tokens": 112,
+      "request_format": "chat_completions",
+      "schema": "rag_stack.v1.generator_chat_request",
+      "schema_version": 1,
+      "seed": 0,
+      "stream": false,
+      "temperature": 0.7,
+      "top_logprobs": 0,
+      "truncate_prompt_tokens_policy": "served_max_model_len_minus_max_tokens",
+      "truncation_side": "right"
+    },
+    "samples_per_batch": 3,
+    "target_batches": [
+      1,
+      8,
+      32,
+      64,
+      128,
+      256
+    ]
+  }
+}

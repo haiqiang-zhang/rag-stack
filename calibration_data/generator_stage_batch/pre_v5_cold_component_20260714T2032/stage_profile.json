@@ -1,0 +1,348 @@
+{
+  "_stage_batch_curves": {
+    "profiles": {
+      "generator_decode": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "correction_s": 5.2285772368796096e-05,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.00230192256688991,
+            "reference_component_service_s": 0.002249636794521114,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 8,
+            "correction_s": 0.00010125614253906744,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.0023835659371762292,
+            "reference_component_service_s": 0.002282309794637162,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 32,
+            "correction_s": 0.00024405833251048325,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.0026145664332012874,
+            "reference_component_service_s": 0.002370508100690804,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 64,
+            "correction_s": 0.00044454494628351233,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.002891683968436706,
+            "reference_component_service_s": 0.002447139022153194,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 256,
+            "correction_s": 0.0015597734511994914,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.005260103527689353,
+            "reference_component_service_s": 0.0037003300764898613,
+            "sample_count": 7
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "d8ace6c83c3894917fd143c620236044be1dc6732854a7517ece4acdea119eaf",
+        "interpolation": "piecewise_linear_signed_correction_in_resident_batch",
+        "key": {
+          "performance_stage": "generator_decode",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "provenance": {
+          "application_mode": "direct",
+          "component_source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl",
+          "component_source_sha256": "574cf1cba790d2e425414254d55ac27a1e7b2b82ad1b5c22bc144e71684cae70",
+          "derivation": "production_parent_interdeparture_total_minus_independent_exact_shape_component_gpu_service_as_signed_correction",
+          "held_out_policy": "batch_128_not_fitted",
+          "runtime_source_stage": "vllm_decode",
+          "source_kind": "standalone_vllm_stage_cycle_telemetry",
+          "source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.jsonl",
+          "source_sha256": "0fbf95fd9dbfc56418d0d6e71837e44ec3ada04fc30a22af9aa0cabb259b8707"
+        },
+        "provenance_sha256": "aa6a435bfaa94f9ef2993f3b143178f67a99427a54a8fd16057fda7bc2989951",
+        "schema_version": 2,
+        "validation": {
+          "absolute_error_s": 5.117440850197722e-05,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.2,
+          "observed_correction_s": 0.0007651133727535281,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.0036033533624003048,
+          "passed": true,
+          "predicted_correction_s": 0.0008162877812555053,
+          "predicted_total_service_s": 0.003654527770902282,
+          "reference_component_service_s": 0.0028382399896467766,
+          "relative_error": 0.01420188456562816,
+          "sample_count": 7
+        }
+      },
+      "generator_prefill": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "correction_s": -0.015902429749956353,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.010313698003301397,
+            "reference_component_service_s": 0.02621612775325775,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 8,
+            "correction_s": -0.013394989314023407,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.01092040300136432,
+            "reference_component_service_s": 0.024315392315387728,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 32,
+            "correction_s": -0.002401288321474567,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.027017782995244488,
+            "reference_component_service_s": 0.029419071316719055,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 64,
+            "correction_s": 0.004214143178425729,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.05145769601222128,
+            "reference_component_service_s": 0.04724355283379555,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 256,
+            "correction_s": 0.03347345823654907,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.20522930199513212,
+            "reference_component_service_s": 0.17175584375858305,
+            "sample_count": 7
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "f07d1307543a2a9a0c84788cf52e4a17c838886988f753644824db8a23540571",
+        "interpolation": "piecewise_linear_signed_correction_in_resident_batch",
+        "key": {
+          "performance_stage": "generator_prefill",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "provenance": {
+          "application_mode": "direct",
+          "component_source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl",
+          "component_source_sha256": "574cf1cba790d2e425414254d55ac27a1e7b2b82ad1b5c22bc144e71684cae70",
+          "derivation": "production_parent_interdeparture_total_minus_independent_exact_shape_component_gpu_service_as_signed_correction",
+          "held_out_policy": "batch_128_not_fitted",
+          "runtime_source_stage": "vllm_prefill",
+          "source_kind": "standalone_vllm_stage_cycle_telemetry",
+          "source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.jsonl",
+          "source_sha256": "0fbf95fd9dbfc56418d0d6e71837e44ec3ada04fc30a22af9aa0cabb259b8707"
+        },
+        "provenance_sha256": "fbdfb6c17f7aad5d34f00a74ce8e063e5cbe9ddc5daaa305b9408a2f6a92eda8",
+        "schema_version": 2,
+        "validation": {
+          "absolute_error_s": 0.001518152252693361,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.2,
+          "observed_correction_s": 0.01244909594510682,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.09974458397482522,
+          "passed": true,
+          "predicted_correction_s": 0.013967248197800175,
+          "predicted_total_service_s": 0.10126273622751858,
+          "reference_component_service_s": 0.0872954880297184,
+          "relative_error": 0.015220397862168951,
+          "sample_count": 7
+        }
+      },
+      "query_expansion_decode": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "correction_s": 5.2285772368796096e-05,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.00230192256688991,
+            "reference_component_service_s": 0.002249636794521114,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 8,
+            "correction_s": 0.00010125614253906744,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.0023835659371762292,
+            "reference_component_service_s": 0.002282309794637162,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 32,
+            "correction_s": 0.00024405833251048325,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.0026145664332012874,
+            "reference_component_service_s": 0.002370508100690804,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 64,
+            "correction_s": 0.00044454494628351233,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.002891683968436706,
+            "reference_component_service_s": 0.002447139022153194,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 256,
+            "correction_s": 0.0015597734511994914,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.005260103527689353,
+            "reference_component_service_s": 0.0037003300764898613,
+            "sample_count": 7
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "6ef3e604c1a2ff8ad0a1ce538f15b67fddd260f650d03df8bb16b767daf225f6",
+        "interpolation": "piecewise_linear_signed_correction_in_resident_batch",
+        "key": {
+          "performance_stage": "query_expansion_decode",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "provenance": {
+          "application_mode": "shared_runtime_boundary_alias",
+          "component_source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl",
+          "component_source_sha256": "574cf1cba790d2e425414254d55ac27a1e7b2b82ad1b5c22bc144e71684cae70",
+          "derivation": "production_parent_interdeparture_total_minus_independent_exact_shape_component_gpu_service_as_signed_correction",
+          "held_out_policy": "batch_128_not_fitted",
+          "runtime_source_stage": "vllm_decode",
+          "source_kind": "standalone_vllm_stage_cycle_telemetry",
+          "source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.jsonl",
+          "source_sha256": "0fbf95fd9dbfc56418d0d6e71837e44ec3ada04fc30a22af9aa0cabb259b8707"
+        },
+        "provenance_sha256": "1e691d0639b7dd0e0fdc1cc27e230d84c45dade820a8e328aa6d2522bafffe27",
+        "schema_version": 2,
+        "validation": {
+          "absolute_error_s": 5.117440850197722e-05,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.2,
+          "observed_correction_s": 0.0007651133727535281,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.0036033533624003048,
+          "passed": true,
+          "predicted_correction_s": 0.0008162877812555053,
+          "predicted_total_service_s": 0.003654527770902282,
+          "reference_component_service_s": 0.0028382399896467766,
+          "relative_error": 0.01420188456562816,
+          "sample_count": 7
+        }
+      },
+      "query_expansion_prefill": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "correction_s": -0.015902429749956353,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.010313698003301397,
+            "reference_component_service_s": 0.02621612775325775,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 8,
+            "correction_s": -0.013394989314023407,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.01092040300136432,
+            "reference_component_service_s": 0.024315392315387728,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 32,
+            "correction_s": -0.002401288321474567,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.027017782995244488,
+            "reference_component_service_s": 0.029419071316719055,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 64,
+            "correction_s": 0.004214143178425729,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.05145769601222128,
+            "reference_component_service_s": 0.04724355283379555,
+            "sample_count": 7
+          },
+          {
+            "batch_size": 256,
+            "correction_s": 0.03347345823654907,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.20522930199513212,
+            "reference_component_service_s": 0.17175584375858305,
+            "sample_count": 7
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "bae6adf080976b9d53ead8ede9f33a473b0f02583684a9075ce077248939e6f9",
+        "interpolation": "piecewise_linear_signed_correction_in_resident_batch",
+        "key": {
+          "performance_stage": "query_expansion_prefill",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "provenance": {
+          "application_mode": "shared_runtime_boundary_alias",
+          "component_source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.component.jsonl",
+          "component_source_sha256": "574cf1cba790d2e425414254d55ac27a1e7b2b82ad1b5c22bc144e71684cae70",
+          "derivation": "production_parent_interdeparture_total_minus_independent_exact_shape_component_gpu_service_as_signed_correction",
+          "held_out_policy": "batch_128_not_fitted",
+          "runtime_source_stage": "vllm_prefill",
+          "source_kind": "standalone_vllm_stage_cycle_telemetry",
+          "source_path": "calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.jsonl",
+          "source_sha256": "0fbf95fd9dbfc56418d0d6e71837e44ec3ada04fc30a22af9aa0cabb259b8707"
+        },
+        "provenance_sha256": "87bfe269db2421d8360e817c82f0106f6e6ce52d8ed4d26b06c34d8c18ab10ae",
+        "schema_version": 2,
+        "validation": {
+          "absolute_error_s": 0.001518152252693361,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.2,
+          "observed_correction_s": 0.01244909594510682,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.09974458397482522,
+          "passed": true,
+          "predicted_correction_s": 0.013967248197800175,
+          "predicted_total_service_s": 0.10126273622751858,
+          "reference_component_service_s": 0.0872954880297184,
+          "relative_error": 0.015220397862168951,
+          "sample_count": 7
+        }
+      }
+    },
+    "schema_version": 2,
+    "system_hardware": "sgs_h100x4_epyc9124"
+  }
+}

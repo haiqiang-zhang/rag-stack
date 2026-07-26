@@ -1,0 +1,77 @@
+CLAUDE.md
+__pycache__/
+.pytest_cache/
+/data/
+indices/
+*.parquet
+!calibration_data/**/*.parquet
+.env
+/test_project/
+.claude/*
+!.claude/skills/
+!.claude/skills/**
+/tmp_outputs/
+.deepeval/
+*.egg-info/
+.venv/
+
+# apps dependencies
+node_modules/
+/apps/node_modules
+
+# Vite build output (current apps/ — Vite + React + shadcn)
+apps/dist/
+apps/dev-dist/
+
+# Native (general)
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.metro-health-check*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# Local env files
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+
+.rag_stack_settings.json
+
+.codex/
+.claude/
+.claude-plugin/
+AGENTS.md
+
+
+optimizer_benchmark_data/
+smac3_output/
+datasets/cm_benchmark/*
+!datasets/cm_benchmark/*.py
+!datasets/cm_benchmark/README.md
+tests/e2e_hnsw/secrets.env
+tests/e2e_hnsw/logs/
+_stash/
+.cache/
+/site/
+quality_stores/
+
+# Experiment campaigns and results stay in the development repository.
+/benchmarks/
+/benchmark_results/
+/tests/benchmarks/
+/analysis/
+/experiments/
+/datasets/query_distribution/
+/configs/rag_stack/agent_ablation/

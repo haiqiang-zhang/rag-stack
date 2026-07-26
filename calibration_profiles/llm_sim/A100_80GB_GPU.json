@@ -1,0 +1,1335 @@
+{
+  "profiles": {
+    "agnostic__Qwen/Qwen2.5-1.5B__bf16": {
+      "bits": "bf16",
+      "calibration_contract": "standalone_ceff_meff_zero_intercept_v1",
+      "component": "agnostic",
+      "compute_efficiency": 0.9624747587301875,
+      "correlation": 0.9999600993846331,
+      "fit_mape": 0.061335165468255654,
+      "grid": [
+        {
+          "batch_size": 128,
+          "measured_s": 1.1850444742441177,
+          "predicted_s": 1.1342695039784272,
+          "rel_err": -0.0428464681024545,
+          "seq_len": [
+            64,
+            128
+          ]
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 3.505418235659599,
+          "predicted_s": 3.9146219247549365,
+          "rel_err": 0.11673462667952926,
+          "seq_len": [
+            64,
+            512
+          ]
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 1.5762268187701702,
+          "predicted_s": 1.593675329481614,
+          "rel_err": 0.011069796874194588,
+          "seq_len": [
+            512,
+            128
+          ]
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.9668474963307381,
+          "predicted_s": 0.8946338789950641,
+          "rel_err": -0.07468977021684425,
+          "seq_len": [
+            64,
+            256
+          ]
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": 2.9012707680045278,
+      "identifiability_rank": 2,
+      "linear_law": null,
+      "max_seq_len": null,
+      "memory_efficiency": 0.4500345882570133,
+      "model_key": "Qwen/Qwen2.5-1.5B",
+      "per_call_overhead_s": 0.0,
+      "validation_grid": [
+        {
+          "batch_size": 16,
+          "measured_s": 0.6146088905632496,
+          "predicted_s": 0.585093229579398,
+          "rel_err": -0.048023485239210253,
+          "seq_len": [
+            128,
+            128
+          ]
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 2.0341709030270576,
+          "predicted_s": 1.8379102703840853,
+          "rel_err": -0.09648187984151976,
+          "seq_len": [
+            64,
+            128
+          ]
+        }
+      ],
+      "validation_mape": 0.07225268254036502
+    },
+    "agnostic__Qwen/Qwen2.5-14B__bf16": {
+      "bits": "bf16",
+      "calibration_contract": "standalone_ceff_meff_zero_intercept_v1",
+      "component": "agnostic",
+      "compute_efficiency": 0.7657577256636267,
+      "correlation": 0.9996491313365509,
+      "fit_mape": 0.019128914504860525,
+      "grid": [
+        {
+          "batch_size": 128,
+          "measured_s": 8.678846525907517,
+          "predicted_s": 8.395166712470267,
+          "rel_err": -0.03268634980356286,
+          "seq_len": [
+            64,
+            128
+          ]
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 22.17142270720005,
+          "predicted_s": 22.51525256446797,
+          "rel_err": 0.015507794055825891,
+          "seq_len": [
+            64,
+            512
+          ]
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 12.390703050971032,
+          "predicted_s": 12.678431950908307,
+          "rel_err": 0.023221353845190067,
+          "seq_len": [
+            512,
+            128
+          ]
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 5.323935736060142,
+          "predicted_s": 5.296782810300206,
+          "rel_err": -0.005100160314863274,
+          "seq_len": [
+            64,
+            256
+          ]
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": 1.9945463029847426,
+      "identifiability_rank": 2,
+      "linear_law": null,
+      "max_seq_len": null,
+      "memory_efficiency": 0.6937535474009967,
+      "model_key": "Qwen/Qwen2.5-14B",
+      "per_call_overhead_s": 0.0,
+      "validation_grid": [
+        {
+          "batch_size": 16,
+          "measured_s": 3.899766800045967,
+          "predicted_s": 3.859011532748293,
+          "rel_err": -0.010450693435616125,
+          "seq_len": [
+            128,
+            128
+          ]
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 15.868152585983276,
+          "predicted_s": 15.538155487846094,
+          "rel_err": -0.020796188866287868,
+          "seq_len": [
+            64,
+            128
+          ]
+        }
+      ],
+      "validation_mape": 0.015623441150951996
+    },
+    "agnostic__Qwen/Qwen2.5-3B__bf16": {
+      "bits": "bf16",
+      "calibration_contract": "standalone_ceff_meff_zero_intercept_v1",
+      "component": "agnostic",
+      "compute_efficiency": 0.8432422119585629,
+      "correlation": 0.9994672602101234,
+      "fit_mape": 0.02902153439074072,
+      "grid": [
+        {
+          "batch_size": 128,
+          "measured_s": 2.1246228270828724,
+          "predicted_s": 2.0247633693412803,
+          "rel_err": -0.04700102835603066,
+          "seq_len": [
+            64,
+            128
+          ]
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 5.757870016306638,
+          "predicted_s": 5.920882618514101,
+          "rel_err": 0.02831126818524925,
+          "seq_len": [
+            64,
+            512
+          ]
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 2.868680684417486,
+          "predicted_s": 2.956908975254747,
+          "rel_err": 0.03075570289733259,
+          "seq_len": [
+            512,
+            128
+          ]
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 1.5590031310617924,
+          "predicted_s": 1.5433848223585207,
+          "rel_err": -0.010018138124350373,
+          "seq_len": [
+            64,
+            256
+          ]
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": 2.3140375088331293,
+      "identifiability_rank": 2,
+      "linear_law": null,
+      "max_seq_len": null,
+      "memory_efficiency": 0.5197746774440377,
+      "model_key": "Qwen/Qwen2.5-3B",
+      "per_call_overhead_s": 0.0,
+      "validation_grid": [
+        {
+          "batch_size": 16,
+          "measured_s": 1.0542520227730274,
+          "predicted_s": 1.0331504686943798,
+          "rel_err": -0.020015663828790844,
+          "seq_len": [
+            128,
+            128
+          ]
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 3.663684554338455,
+          "predicted_s": 3.313565812591146,
+          "rel_err": -0.09556465262073562,
+          "seq_len": [
+            64,
+            128
+          ]
+        }
+      ],
+      "validation_mape": 0.05779015822476323
+    },
+    "agnostic__Qwen/Qwen2.5-7B__bf16": {
+      "bits": "bf16",
+      "calibration_contract": "standalone_ceff_meff_zero_intercept_v1",
+      "component": "agnostic",
+      "compute_efficiency": 0.8066164904111331,
+      "correlation": 0.9979027695024474,
+      "fit_mape": 0.03529278386287892,
+      "grid": [
+        {
+          "batch_size": 128,
+          "measured_s": 4.230984583675861,
+          "predicted_s": 4.054713162901348,
+          "rel_err": -0.04166203333725433,
+          "seq_len": [
+            64,
+            128
+          ]
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 10.479838180482387,
+          "predicted_s": 10.190398898124624,
+          "rel_err": -0.027618678587691774,
+          "seq_len": [
+            64,
+            512
+          ]
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 5.787724817454815,
+          "predicted_s": 6.044157820119808,
+          "rel_err": 0.044306357118367785,
+          "seq_len": [
+            512,
+            128
+          ]
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 2.7486801835298538,
+          "predicted_s": 2.8244999602472496,
+          "rel_err": 0.027584066408201807,
+          "seq_len": [
+            64,
+            256
+          ]
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": 1.9625660308433819,
+      "identifiability_rank": 2,
+      "linear_law": null,
+      "max_seq_len": null,
+      "memory_efficiency": 0.6515809445060223,
+      "model_key": "Qwen/Qwen2.5-7B",
+      "per_call_overhead_s": 0.0,
+      "validation_grid": [
+        {
+          "batch_size": 16,
+          "measured_s": 1.9587102543711663,
+          "predicted_s": 1.9752041710062076,
+          "rel_err": 0.00842080476080245,
+          "seq_len": [
+            128,
+            128
+          ]
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 7.604627406120301,
+          "predicted_s": 7.205791060737248,
+          "rel_err": -0.05244653341754317,
+          "seq_len": [
+            64,
+            128
+          ]
+        }
+      ],
+      "validation_mape": 0.03043366908917281
+    },
+    "agnostic__huggingface_all_mpnet_base_v2__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_linear_law_v1",
+      "component": "agnostic",
+      "correlation": 0.9992745799457758,
+      "fit_mape": 0.046915005872446174,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.009663951873779298,
+          "predicted_s": 0.00923272352134719,
+          "rel_err": -0.04462236133461488,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.00863046407699585,
+          "predicted_s": 0.007886300618551905,
+          "rel_err": -0.08622519621250524,
+          "seq_len": 16
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.010716879844665527,
+          "predicted_s": 0.010771492553113226,
+          "rel_err": 0.0050959522957498725,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.008555679798126221,
+          "predicted_s": 0.00807864674752266,
+          "rel_err": -0.05575630012568215,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.009412032127380371,
+          "predicted_s": 0.00846333900546417,
+          "rel_err": -0.10079578023925095,
+          "seq_len": 64
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.2030850067138672,
+          "predicted_s": 0.20590663110545468,
+          "rel_err": 0.013893809480297845,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.03559623908996582,
+          "predicted_s": 0.03356449954765842,
+          "rel_err": -0.05707736531301484,
+          "seq_len": 16
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.4192178192138672,
+          "predicted_s": 0.4028690671715076,
+          "rel_err": -0.03899822787356074,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.0582522087097168,
+          "predicted_s": 0.05818480405591503,
+          "rel_err": -0.0011571175633470232,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.10792268753051758,
+          "predicted_s": 0.10742541307242826,
+          "rel_err": -0.004607691575033348,
+          "seq_len": 64
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.3988429718017578,
+          "predicted_s": 0.40412915213510636,
+          "rel_err": 0.013253788350509043,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.06365526390075683,
+          "predicted_s": 0.05944488901951381,
+          "rel_err": -0.06614338898676636,
+          "seq_len": 16
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.11158342361450195,
+          "predicted_s": 0.10868549803602703,
+          "rel_err": -0.025970932640377305,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.20110433959960938,
+          "predicted_s": 0.20716671606905346,
+          "rel_err": 0.030145428395598136,
+          "seq_len": 64
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.05677435111999512,
+          "predicted_s": 0.05723974033321595,
+          "rel_err": 0.008197173618721113,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.013101056098937988,
+          "predicted_s": 0.014154207443766883,
+          "rel_err": 0.0803867517912748,
+          "seq_len": 16
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.1153792953491211,
+          "predicted_s": 0.10648034934972918,
+          "rel_err": -0.07712775478880327,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.01914110469818115,
+          "predicted_s": 0.020309283570831033,
+          "rel_err": 0.061029856482676566,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.03148969554901123,
+          "predicted_s": 0.03261943582495934,
+          "rel_err": 0.03587650678266346,
+          "seq_len": 64
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.10900438308715821,
+          "predicted_s": 0.10679537059062887,
+          "rel_err": -0.020265354786357992,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.21390338897705077,
+          "predicted_s": 0.2052765886236553,
+          "rel_err": -0.04033035846066478,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.03287518310546875,
+          "predicted_s": 0.032934457065859034,
+          "rel_err": 0.0018030001597291957,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.055739793777465824,
+          "predicted_s": 0.05755476157411564,
+          "rel_err": 0.032561437236310005,
+          "seq_len": 64
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.018901520729064942,
+          "predicted_s": 0.020073017640156263,
+          "rel_err": 0.061978976606358774,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.00947323226928711,
+          "predicted_s": 0.009301634417793997,
+          "rel_err": -0.018113970671810222,
+          "seq_len": 16
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.03477017593383789,
+          "predicted_s": 0.032383169894284566,
+          "rel_err": -0.06865096236773192,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.009556400299072265,
+          "predicted_s": 0.010840403449560035,
+          "rel_err": 0.13436054479764953,
+          "seq_len": 32
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.012325551986694336,
+          "predicted_s": 0.01391794151309211,
+          "rel_err": 0.12919417549143342,
+          "seq_len": 64
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": null,
+      "identifiability_rank": null,
+      "linear_law": {
+        "fit_mape": 0.046915005872446174,
+        "fixed_ms": 7.6841100758030345,
+        "per_item_ms": 0.009844413778115462,
+        "per_token_ms": 0.012021633060672172
+      },
+      "max_seq_len": null,
+      "model_key": "huggingface_all_mpnet_base_v2",
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 0.8244717712402344,
+          "predicted_s": 0.7980540242672122,
+          "rel_err": -0.03204202726466015,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.020440799713134766,
+          "predicted_s": 0.020624304811730727,
+          "rel_err": 0.008977393310010556,
+          "seq_len": 16
+        }
+      ],
+      "validation_mape": 0.02050971028733535
+    },
+    "colbert_reranker__colbertv2__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_linear_law_v1",
+      "component": "colbert_reranker",
+      "correlation": 0.9984788203213709,
+      "fit_mape": 0.04181342906484674,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.016499391555786135,
+          "predicted_s": 0.015845868447103107,
+          "rel_err": -0.0396089217274103,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.017094000816345215,
+          "predicted_s": 0.017500905232095666,
+          "rel_err": 0.0238039309885472,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.021516719818115235,
+          "predicted_s": 0.020810978802080778,
+          "rel_err": -0.032799656360273106,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.24640312194824218,
+          "predicted_s": 0.25230924910291463,
+          "rel_err": 0.023969368196207572,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.47671601867675784,
+          "predicted_s": 0.4641539575819619,
+          "rel_err": -0.026351246030425077,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.9570062255859375,
+          "predicted_s": 0.8878433745400564,
+          "rel_err": -0.07227001162247973,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.45903518676757815,
+          "predicted_s": 0.49063454614184276,
+          "rel_err": 0.0688386430608515,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.9368476867675781,
+          "predicted_s": 0.9143239630999372,
+          "rel_err": -0.024042033711322786,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.06773462677001953,
+          "predicted_s": 0.07356527632371851,
+          "rel_err": 0.08608078071347292,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.11751448059082031,
+          "predicted_s": 0.12652645344348032,
+          "rel_err": 0.07668819031791711,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.24815653991699219,
+          "predicted_s": 0.23244880768300394,
+          "rel_err": -0.06329767589136458,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.2415803985595703,
+          "predicted_s": 0.23906895482297416,
+          "rel_err": -0.010395892015952863,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.48036038208007814,
+          "predicted_s": 0.45091366330202143,
+          "rel_err": -0.061301306012259395,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.02787171173095703,
+          "predicted_s": 0.028879283128919492,
+          "rel_err": 0.036150323585736346,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.04220463943481445,
+          "predicted_s": 0.042119577408859944,
+          "rel_err": -0.002015466240053668,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.07010041427612304,
+          "predicted_s": 0.06860016596874084,
+          "rel_err": -0.021401418563273735,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": null,
+      "identifiability_rank": null,
+      "linear_law": {
+        "fit_mape": 0.04181342906484674,
+        "fixed_ms": 13.983952063986482,
+        "per_item_ms": 0.0,
+        "per_token_ms": 0.012929974882754347
+      },
+      "max_seq_len": 512,
+      "model_key": "colbertv2",
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 1.90825927734375,
+          "predicted_s": 1.761702797016126,
+          "rel_err": -0.07680113602362612,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.11573844909667969,
+          "predicted_s": 0.13314660058345054,
+          "rel_err": 0.15040940692258042,
+          "seq_len": 128
+        }
+      ],
+      "validation_mape": 0.11360527147310327
+    },
+    "flag_embedding_reranker__bge_reranker_large__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_linear_law_v1",
+      "component": "flag_embedding_reranker",
+      "correlation": 0.9753622683263791,
+      "fit_mape": 0.10693157659708233,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.02917148780822754,
+          "predicted_s": 0.032329982587266146,
+          "rel_err": 0.10827335238443966,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.040700559616088865,
+          "predicted_s": 0.04055394104376725,
+          "rel_err": -0.0036023723925323317,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.06668251037597656,
+          "predicted_s": 0.057001857956769465,
+          "rel_err": -0.14517528456299242,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 1.1901470336914062,
+          "predicted_s": 1.2073280470598617,
+          "rel_err": 0.014436042675472013,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 2.397431640625,
+          "predicted_s": 2.259994729492004,
+          "rel_err": -0.057326727821597714,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 4.917930908203125,
+          "predicted_s": 4.365328094356287,
+          "rel_err": -0.11236489982506563,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 1.78779638671875,
+          "predicted_s": 2.3915780647960214,
+          "rel_err": 0.3377239614995688,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 3.604986572265625,
+          "predicted_s": 4.496911429660305,
+          "rel_err": 0.24741419683961063,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.3334662475585938,
+          "predicted_s": 0.31914053375774226,
+          "rel_err": -0.042960011412652266,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.6459802856445312,
+          "predicted_s": 0.5823072043657778,
+          "rel_err": -0.09856814935957872,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 1.2404716186523437,
+          "predicted_s": 1.1086405455818484,
+          "rel_err": -0.10627496114237371,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 1.2063587646484375,
+          "predicted_s": 1.141536379407853,
+          "rel_err": -0.05373391990854007,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 2.46584423828125,
+          "predicted_s": 2.194203061839995,
+          "rel_err": -0.11016153097755896,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.09930155181884766,
+          "predicted_s": 0.09709365543221236,
+          "rel_err": -0.022234258641426693,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.18111180877685548,
+          "predicted_s": 0.16288532308422124,
+          "rel_err": -0.10063664990001155,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.34644142150878904,
+          "predicted_s": 0.29446865838823894,
+          "rel_err": -0.1500189062098961,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": null,
+      "identifiability_rank": null,
+      "linear_law": {
+        "fit_mape": 0.10693157659708233,
+        "fixed_ms": 23.0780293237024,
+        "per_item_ms": 0.0,
+        "per_token_ms": 0.06424967544141491
+      },
+      "max_seq_len": 512,
+      "model_key": "bge_reranker_large",
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 7.39154296875,
+          "predicted_s": 8.707578159388872,
+          "rel_err": 0.17804607186927165,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.6407659912109375,
+          "predicted_s": 0.6152030381917821,
+          "rel_err": -0.03989436607090486,
+          "seq_len": 128
+        }
+      ],
+      "validation_mape": 0.10897021897008825
+    },
+    "monot5__monot5-3b__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_capacity_hinge_law_v1",
+      "component": "monot5",
+      "correlation": 0.9995746846771297,
+      "fit_mape": 0.03909368296823695,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.08576,
+          "predicted_s": 0.08425623165478299,
+          "rel_err": -0.01753461223434014,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.10729999999999999,
+          "predicted_s": 0.10580307060538499,
+          "rel_err": -0.013950879726141672,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.1482,
+          "predicted_s": 0.14889674850658896,
+          "rel_err": 0.004701406927051027,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 2.95309,
+          "predicted_s": 3.1627608467220436,
+          "rel_err": 0.07100049328738495,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 6.03845,
+          "predicted_s": 5.920756232399099,
+          "rel_err": -0.019490724871598027,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 12.74516,
+          "predicted_s": 11.43674700375321,
+          "rel_err": -0.10265959754501242,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 192,
+          "measured_s": 4.354326416015625,
+          "predicted_s": 4.7141332511653875,
+          "rel_err": 0.0826320309442946,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 192,
+          "measured_s": 9.042181640625,
+          "predicted_s": 8.851126329680971,
+          "rel_err": -0.021129337867495268,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 192,
+          "measured_s": 37.80321484375,
+          "predicted_s": 37.803214843749984,
+          "rel_err": -3.759165661952024e-16,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 224,
+          "measured_s": 43.65813,
+          "predicted_s": 43.65812999999999,
+          "rel_err": -1.6275152778190458e-16,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 5.97159,
+          "predicted_s": 6.265505655608731,
+          "rel_err": 0.04921899454060493,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 12.093620000000001,
+          "predicted_s": 11.781496426962843,
+          "rel_err": -0.02580894496744223,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.77867,
+          "predicted_s": 0.8357022400570276,
+          "rel_err": 0.07324314543648487,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 1.51621,
+          "predicted_s": 1.5252010864762917,
+          "rel_err": 0.005929974394240675,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 3.10466,
+          "predicted_s": 2.9041987793148194,
+          "rel_err": -0.06456784984029831,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 2.98262,
+          "predicted_s": 2.9903861351172276,
+          "rel_err": 0.0026037963660230905,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 6.34199,
+          "predicted_s": 5.7483815207942826,
+          "rel_err": -0.09359971857503993,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.24105000000000001,
+          "predicted_s": 0.25393758839077374,
+          "rel_err": 0.053464378306466394,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.41706,
+          "predicted_s": 0.4263122999955897,
+          "rel_err": 0.022184577748021246,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.81867,
+          "predicted_s": 0.7710617232052216,
+          "rel_err": -0.0581531957867986,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": null,
+      "identifiability_rank": null,
+      "linear_law": {
+        "capacity_tokens": 69632.0,
+        "fit_mape": 0.03909368296823695,
+        "fixed_ms": 60.01603783535574,
+        "overload_per_token_ms": 0.17819202265450645,
+        "overload_step_ms": 15021.574789893193,
+        "per_item_ms": 0.0,
+        "per_token_ms": 0.1683346793015781
+      },
+      "max_seq_len": 512,
+      "model_key": "monot5-3b",
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 49.604620000000004,
+          "predicted_s": 49.51304515625,
+          "rel_err": -0.0018460950562669927,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 1.4953699999999999,
+          "predicted_s": 1.6113884422786997,
+          "rel_err": 0.07758510755110765,
+          "seq_len": 128
+        }
+      ],
+      "validation_mape": 0.03971560130368732
+    },
+    "sentence_transformer_reranker__ms_marco_minilm_l2__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_linear_law_v1",
+      "component": "sentence_transformer_reranker",
+      "correlation": 0.9980592739917731,
+      "fit_mape": 0.04142893192559542,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.006140527963638306,
+          "predicted_s": 0.006524081504113279,
+          "rel_err": 0.06246263232513883,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.006530207872390747,
+          "predicted_s": 0.006688199947331343,
+          "rel_err": 0.024194034558773468,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.00733025598526001,
+          "predicted_s": 0.007016436833767473,
+          "rel_err": -0.04281148600043137,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.033671998977661134,
+          "predicted_s": 0.0328299192069636,
+          "rel_err": -0.02500830946378305,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.05223340797424316,
+          "predicted_s": 0.05383707993887586,
+          "rel_err": 0.030702035858420122,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.08917275238037109,
+          "predicted_s": 0.09585140140270038,
+          "rel_err": 0.07489562499810655,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.061291296005249025,
+          "predicted_s": 0.05934288949015132,
+          "rel_err": -0.03178928562598586,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 0.09568305587768555,
+          "predicted_s": 0.10135721095397585,
+          "rel_err": 0.059301566241192503,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.0125829119682312,
+          "predicted_s": 0.012945191494572805,
+          "rel_err": 0.028791390042008713,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.018950096130371095,
+          "predicted_s": 0.01819698167755087,
+          "rel_err": -0.03974198587906989,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.03229841613769531,
+          "predicted_s": 0.028700562043507,
+          "rel_err": -0.11139413396774198,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.029651616096496584,
+          "predicted_s": 0.030077014431325867,
+          "rel_err": 0.0143465480412565,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.051080415725708005,
+          "predicted_s": 0.05108417516323813,
+          "rel_err": 7.359841294772759e-05,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.007945263862609863,
+          "predicted_s": 0.007974009566475107,
+          "rel_err": 0.003617967176712697,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.009184127807617187,
+          "predicted_s": 0.009286957112219624,
+          "rel_err": 0.011196414810032619,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.013273903846740723,
+          "predicted_s": 0.011912852203708656,
+          "rel_err": -0.10253589740792494,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": null,
+      "identifiability_rank": null,
+      "linear_law": {
+        "fit_mape": 0.04142893192559542,
+        "fixed_ms": 6.3169489237758745,
+        "per_item_ms": 0.022499331717081537,
+        "per_token_ms": 0.001282175337641129
+      },
+      "max_seq_len": 512,
+      "model_key": "ms_marco_minilm_l2",
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 0.16570929718017577,
+          "predicted_s": 0.18538585388162487,
+          "rel_err": 0.11874141666327134,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.019494864463806154,
+          "predicted_s": 0.019573434065369738,
+          "rel_err": 0.004030271752309705,
+          "seq_len": 128
+        }
+      ],
+      "validation_mape": 0.06138584420779052
+    },
+    "tart__tart_flan_t5_xl__f32": {
+      "bits": "f32",
+      "calibration_contract": "standalone_ceff_meff_zero_intercept_v1",
+      "component": "tart",
+      "compute_efficiency": 0.11132717841196804,
+      "correlation": 0.9996708728848495,
+      "fit_mape": 0.061307469538407156,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.022434639930725097,
+          "predicted_s": 0.01793407971374203,
+          "rel_err": -0.20060764206067683,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.02401036834716797,
+          "predicted_s": 0.02094811945892431,
+          "rel_err": -0.12753860515450413,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.03598470497131347,
+          "predicted_s": 0.027357447600266677,
+          "rel_err": -0.23974789783393616,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 0.8233995361328125,
+          "predicted_s": 0.8741876462737951,
+          "rel_err": 0.06168100407186847,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 1.6398536987304688,
+          "predicted_s": 1.6664546743571682,
+          "rel_err": 0.016221554183335474,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 128,
+          "measured_s": 3.278770263671875,
+          "predicted_s": 3.293938403483914,
+          "rel_err": 0.004626167310378189,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 1.6370855102539061,
+          "predicted_s": 1.7483752925475902,
+          "rel_err": 0.06798043327402206,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 256,
+          "measured_s": 3.24763818359375,
+          "predicted_s": 3.3329093487143364,
+          "rel_err": 0.026256362408643638,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.21916390991210938,
+          "predicted_s": 0.21854691156844877,
+          "rel_err": -0.0028152369790630234,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.4080138092041016,
+          "predicted_s": 0.41661366858929205,
+          "rel_err": 0.021077373341764894,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 32,
+          "measured_s": 0.8170743408203125,
+          "predicted_s": 0.8234846008709785,
+          "rel_err": 0.007845381662861134,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.8113057556152343,
+          "predicted_s": 0.8332273371785841,
+          "rel_err": 0.02702012331556316,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 1.645599853515625,
+          "predicted_s": 1.646969201741957,
+          "rel_err": 0.0008321270954214651,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.05888454437255859,
+          "predicted_s": 0.05463672789211219,
+          "rel_err": -0.07213805465778503,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.10802083206176757,
+          "predicted_s": 0.10415341714732301,
+          "rel_err": -0.03580249143270002,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.2210647201538086,
+          "predicted_s": 0.20587115021774463,
+          "rel_err": -0.06872905783199076,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "A100_80GB_GPU",
+      "identifiability_condition": 2.012993114472859,
+      "identifiability_rank": 2,
+      "linear_law": null,
+      "max_seq_len": 512,
+      "memory_efficiency": 0.05,
+      "model_key": "tart_flan_t5_xl",
+      "per_call_overhead_s": 0.0,
+      "validation_grid": [
+        {
+          "batch_size": 256,
+          "measured_s": 6.560942138671875,
+          "predicted_s": 6.587876806967828,
+          "rel_err": 0.004105304958748781,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 64,
+          "measured_s": 0.42649159240722656,
+          "predicted_s": 0.43709382313689754,
+          "rel_err": 0.024859178746828994,
+          "seq_len": 128
+        }
+      ],
+      "validation_mape": 0.014482241852788888
+    }
+  }
+}

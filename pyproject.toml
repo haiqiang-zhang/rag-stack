@@ -1,0 +1,141 @@
+[project]
+name = "RAG-Stack"
+version = "0.0.1"
+requires-python = ">=3.10"
+
+# ── Dependency-pinning policy (read before editing) ───────────────────────────
+# Installs broke across machines because direct deps were unpinned: each box
+# resolved a different "latest", and on cu13 those drifted into vLLM/torch/CUDA
+# conflicts. The rule now, by tier:
+#   1. CUDA-INDEPENDENT app deps           → EXACT  (==)  reproducible everywhere.
+#   2. Shared framework deps (numpy,       → FLOOR  (>=)  a hard == here fights
+#      pydantic, aiohttp, fastapi,                       torch and the evaluator's
+#      pyyaml, rich, click, networkx)                    selected runtime stack.
+#   3. Main-repo transformer ecosystem     → FLOOR  the evaluator's cu12/cu13
+#      (transformers, sentence-transformers)           extras select compatible
+#                                                       vLLM/transformers versions.
+#   4. vLLM / nixl / CUDA-toolkit          → owned and pinned by the
+#                                            rag-stack-evaluator cu12/cu13 extras.
+# The == versions below are a known-good set (captured from a working cu12 box).
+# Always installed with uv (see README):  uv pip install -e '.[cu12]'   (or .[cu13]).
+# For a byte-identical lock of one stack:
+#   uv pip compile pyproject.toml --extra cu12 -o requirements-cu12.lock
+dependencies = [
+    "rag-stack-evaluator==0.0.1",
+
+    # ── Tier 2: shared framework deps → FLOORS ──
+    "numpy>=2.0,<3",
+    "pydantic>=2.9.2",
+    "aiohttp>=3.12.13",
+    "fastapi>=0.115.13",
+    "pyyaml>=6.0.2",
+    "rich>=14.0.0",
+    "click>=8.2.1",
+    "networkx>=2.5",          # transitive_reduction for the topology DAG; also a torch dep
+    "anyio>=4.13.0",
+    "huggingface-hub>=0.36.2",
+    "starlette>=0.52.1",
+
+    # ── Tier 1: CUDA-independent app deps → EXACT pins (the reproducibility fix) ──
+    "pandas==2.3.3",
+    "pyarrow==23.0.1",        # parquet for pandas + datasets
+    "openai==2.24.0",
+    "pysbd==0.3.4",           # sentence boundary detection (RAGEval)
+    "fastparquet==2025.12.0",
+    "scikit-learn==1.8.0",
+    "emoji==2.15.0",
+    "banks==2.4.1",
+    "datasets==4.7.0",
+    "requests==2.34.2",
+    "psutil==7.2.2",
+    # API server
+    "quart==0.20.0",
+    "pyngrok==7.5.1",
+    # Optimizer
+    "claude-agent-sdk==0.1.50",   # autonomous optimizer
+    "ax-platform==1.2.4",         # 1.2.x renamed GenerationStep model_kwargs→generator_kwargs / model_gen_kwargs→generator_gen_kwargs; 1.3 dropped GenerationStrategy(steps=). optimizer/botorch uses both → pin exact.
+    "botorch==0.17.2",            # ax 1.2.4's matched pin; imported directly (qNEHVI, DominatedPartitioning, GPs).
+    "smac==2.3.1",                # SMAC optimizer (pyrfr build needs conda compilers + swig)
+    "pymoo==0.6.1.6",             # NSGA-II reference Pareto
+    "matplotlib==3.10.8",
+    # LlamaIndex (exact)
+    "llama-index==0.14.16",
+    "llama-index-core==0.14.17",
+    "llama-index-readers-file==0.5.6",
+    "llama-index-llms-openai==0.6.26",
+    "llama-index-retrievers-bm25==0.7.1",
+    "llama-index-vector-stores-faiss==0.6.0",   # faiss vector store
+    # LangChain (exact)
+    "langchain==1.3.0",
+    "langchain-core==1.4.0",
+    "langchain-community==0.4.1",
+    "langchain-text-splitters==1.1.2",
+    "langsmith==0.8.4",
+]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rag_stack", "rago/rago"]
+
+
+[project.optional-dependencies]
+test = ["pytest==9.0.2", "pytest-asyncio==1.3.0"]
+# Preserve the parent project's public extras while delegating evaluator-owned
+# implementations and dependencies to the extracted distribution.
+ko = ["rag-stack-evaluator[ko]==0.0.1"]
+ja = ["rag-stack-evaluator[ja]==0.0.1"]
+faiss = ["rag-stack-evaluator[faiss]==0.0.1"]
+parse = ["PyMuPDF==1.26.1", "pdfminer.six==20250506", "pdfplumber==0.11.7", "jq==1.9.1", "unstructured[pdf]==0.17.2", "PyPDF2==2.12.1", "pdf2image==1.17.0"]
+
+# ── GPU base (driver-agnostic) — shared by both cu12 and cu13 ─────────────────
+# Keep the parent's public ``gpu`` extra compatible: evaluator-specific model
+# backends are delegated, while dependencies imported by the main repository
+# remain declared here. vLLM itself is selected only by cu12/cu13.
+gpu = [
+    "rag-stack-evaluator[gpu]==0.0.1",
+    "torch>=2.7.1",
+    "sentencepiece==0.2.1",
+    "transformers>=4.51.3",
+    "sentence-transformers>=4.1.0",
+]
+
+# ── GPU install: pick ONE by your NVIDIA DRIVER (nvidia-smi) ──────────────────
+#   uv pip install -e '.[cu12]'   # driver 525–579 (this box: 560)
+#   uv pip install -e '.[cu13]'   # driver ≥580
+# Each combines the main-repo GPU dependencies with the evaluator's fully pinned
+# vLLM/NIXL/CUDA stack. The documented install commands select the matching
+# Torch backend explicitly (cu128 for cu12, cu130 for cu13).
+cu12 = [
+    "RAG-Stack[gpu]",
+    "rag-stack-evaluator[cu12]==0.0.1",
+]
+cu13 = [
+    "RAG-Stack[gpu]",
+    "rag-stack-evaluator[cu13]==0.0.1",
+]
+# `all` preserves the parent project's existing public extra surface.
+all = ["RAG-Stack[cu13]", "RAG-Stack[ko]", "RAG-Stack[parse]", "RAG-Stack[ja]"]
+
+[tool.uv]
+# Keep auto-selection as uv's default for ad-hoc installs. Public installation
+# commands pass --torch-backend cu128/cu130 explicitly so the selected Torch
+# wheel cannot diverge from the .[cu12]/.[cu13] vLLM stack.
+# NB: the torch INDEX can't be pinned via an extra — `uv pip install` ignores
+# [tool.uv.sources] (uv-sync/project-mode only); torch-backend is how.
+torch-backend = "auto"
+
+[tool.uv.workspace]
+members = ["RAG-Stack-Evaluator"]
+
+[tool.uv.sources]
+rag-stack-evaluator = { workspace = true }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = ["--import-mode=importlib", "--strict-markers", "-p", "no:deepeval", "-p", "no:langsmith_plugin"]
+asyncio_default_fixture_loop_scope = "function"

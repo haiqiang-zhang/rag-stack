@@ -1,0 +1,15 @@
+[submodule "rago"]
+	path = rago
+	url = https://github.com/haiqiang-zhang/rago.git
+	branch = release
+[submodule "genz_llm"]
+	path = genz_llm
+	url = https://github.com/haiqiang-zhang/GenZ-LLM-Analyzer.git
+	branch = codex/nixl-disagg-pp-fail-closed
+[submodule "RAG-Stack-Evaluator"]
+	path = RAG-Stack-Evaluator
+	url = https://github.com/haiqiang-zhang/RAG-Stack-Evaluator.git
+	branch = main
+[submodule "FlashRAG"]
+	path = FlashRAG
+	url = https://github.com/haiqiang-zhang/FlashRAG.git

@@ -1,0 +1,298 @@
+{
+  "components": {
+    "rrf_fusion": {
+      "demand_axis": "input_items",
+      "equation": "service_s = per_call_s + per_item_s * (fanout * top_k)",
+      "fit_form": "nonnegative_affine",
+      "fit_mape": 0.0844,
+      "grid": [
+        {
+          "items": 8,
+          "k": 2,
+          "overlap": 0,
+          "seconds": 0.0008516979869455099,
+          "top_k": 4
+        },
+        {
+          "items": 8,
+          "k": 2,
+          "overlap": 0.5,
+          "seconds": 0.0008332585130119696,
+          "top_k": 4
+        },
+        {
+          "items": 16,
+          "k": 2,
+          "overlap": 0,
+          "seconds": 0.0008668584923725575,
+          "top_k": 8
+        },
+        {
+          "items": 16,
+          "k": 2,
+          "overlap": 0.5,
+          "seconds": 0.000859978492371738,
+          "top_k": 8
+        },
+        {
+          "items": 32,
+          "k": 2,
+          "overlap": 0,
+          "seconds": 0.0009206224931403995,
+          "top_k": 16
+        },
+        {
+          "items": 32,
+          "k": 2,
+          "overlap": 0.5,
+          "seconds": 0.0009044025064213201,
+          "top_k": 16
+        },
+        {
+          "items": 64,
+          "k": 2,
+          "overlap": 0,
+          "seconds": 0.0010237919923383743,
+          "top_k": 32
+        },
+        {
+          "items": 64,
+          "k": 2,
+          "overlap": 0.5,
+          "seconds": 0.0009791819902602583,
+          "top_k": 32
+        },
+        {
+          "items": 128,
+          "k": 2,
+          "overlap": 0,
+          "seconds": 0.0012458509881980717,
+          "top_k": 64
+        },
+        {
+          "items": 128,
+          "k": 2,
+          "overlap": 0.5,
+          "seconds": 0.001154035999206826,
+          "top_k": 64
+        },
+        {
+          "items": 12,
+          "k": 3,
+          "overlap": 0,
+          "seconds": 0.0009360969997942448,
+          "top_k": 4
+        },
+        {
+          "items": 12,
+          "k": 3,
+          "overlap": 0.5,
+          "seconds": 0.000926247492316179,
+          "top_k": 4
+        },
+        {
+          "items": 24,
+          "k": 3,
+          "overlap": 0,
+          "seconds": 0.0009807570022530854,
+          "top_k": 8
+        },
+        {
+          "items": 24,
+          "k": 3,
+          "overlap": 0.5,
+          "seconds": 0.0009599324985174462,
+          "top_k": 8
+        },
+        {
+          "items": 48,
+          "k": 3,
+          "overlap": 0,
+          "seconds": 0.0010642470006132498,
+          "top_k": 16
+        },
+        {
+          "items": 48,
+          "k": 3,
+          "overlap": 0.5,
+          "seconds": 0.001011767002637498,
+          "top_k": 16
+        },
+        {
+          "items": 96,
+          "k": 3,
+          "overlap": 0,
+          "seconds": 0.0012324504932621494,
+          "top_k": 32
+        },
+        {
+          "items": 96,
+          "k": 3,
+          "overlap": 0.5,
+          "seconds": 0.0011266959918430075,
+          "top_k": 32
+        },
+        {
+          "items": 192,
+          "k": 3,
+          "overlap": 0,
+          "seconds": 0.0015171130071394145,
+          "top_k": 64
+        },
+        {
+          "items": 192,
+          "k": 3,
+          "overlap": 0.5,
+          "seconds": 0.0013531339936889708,
+          "top_k": 64
+        },
+        {
+          "items": 16,
+          "k": 4,
+          "overlap": 0,
+          "seconds": 0.0010175869974773377,
+          "top_k": 4
+        },
+        {
+          "items": 16,
+          "k": 4,
+          "overlap": 0.5,
+          "seconds": 0.0010045520029962063,
+          "top_k": 4
+        },
+        {
+          "items": 32,
+          "k": 4,
+          "overlap": 0,
+          "seconds": 0.0010812309919856489,
+          "top_k": 8
+        },
+        {
+          "items": 32,
+          "k": 4,
+          "overlap": 0.5,
+          "seconds": 0.0010446515079820529,
+          "top_k": 8
+        },
+        {
+          "items": 64,
+          "k": 4,
+          "overlap": 0,
+          "seconds": 0.0011902505066245794,
+          "top_k": 16
+        },
+        {
+          "items": 64,
+          "k": 4,
+          "overlap": 0.5,
+          "seconds": 0.0011313360009808093,
+          "top_k": 16
+        },
+        {
+          "items": 128,
+          "k": 4,
+          "overlap": 0,
+          "seconds": 0.0014255880087148398,
+          "top_k": 32
+        },
+        {
+          "items": 128,
+          "k": 4,
+          "overlap": 0.5,
+          "seconds": 0.001278490002732724,
+          "top_k": 32
+        },
+        {
+          "items": 256,
+          "k": 4,
+          "overlap": 0,
+          "seconds": 0.0018068709905492142,
+          "top_k": 64
+        },
+        {
+          "items": 256,
+          "k": 4,
+          "overlap": 0.5,
+          "seconds": 0.0015651574940420687,
+          "top_k": 64
+        },
+        {
+          "items": 24,
+          "k": 6,
+          "overlap": 0,
+          "seconds": 0.0012089405063306913,
+          "top_k": 4
+        },
+        {
+          "items": 24,
+          "k": 6,
+          "overlap": 0.5,
+          "seconds": 0.0011739105102606118,
+          "top_k": 4
+        },
+        {
+          "items": 48,
+          "k": 6,
+          "overlap": 0,
+          "seconds": 0.0012943750043632463,
+          "top_k": 8
+        },
+        {
+          "items": 48,
+          "k": 6,
+          "overlap": 0.5,
+          "seconds": 0.0012330850004218519,
+          "top_k": 8
+        },
+        {
+          "items": 96,
+          "k": 6,
+          "overlap": 0,
+          "seconds": 0.0014887730067130178,
+          "top_k": 16
+        },
+        {
+          "items": 96,
+          "k": 6,
+          "overlap": 0.5,
+          "seconds": 0.001344974007224664,
+          "top_k": 16
+        },
+        {
+          "items": 192,
+          "k": 6,
+          "overlap": 0,
+          "seconds": 0.0018192309944424778,
+          "top_k": 32
+        },
+        {
+          "items": 192,
+          "k": 6,
+          "overlap": 0.5,
+          "seconds": 0.0015809769975021482,
+          "top_k": 32
+        },
+        {
+          "items": 384,
+          "k": 6,
+          "overlap": 0,
+          "seconds": 0.0024748205032665282,
+          "top_k": 64
+        },
+        {
+          "items": 384,
+          "k": 6,
+          "overlap": 0.5,
+          "seconds": 0.001986109506106004,
+          "top_k": 64
+        }
+      ],
+      "operator": "rag_stack_evaluator.static_rag_evaluator.nodes.hybridretrieval.hybrid_rrf.rrf_pure",
+      "per_call_s": 0.00091323,
+      "per_item_s": 3.3252e-06,
+      "service_unit": "seconds_per_user_row"
+    }
+  },
+  "hardware_key": "epyc_9124",
+  "profile_kind": "retrieval_worker"
+}

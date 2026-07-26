@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1120" viewBox="0 0 1600 1120" role="img" aria-labelledby="title description">
+  <title id="title">RAG-CM architecture: component estimates, analytical shortlisting, and simulation</title>
+  <desc id="description">Workflow schema and configuration supply stages, corpus information, models, hardware, and search choices. The quality trace is normalized into one shared cohort and compiled into execution paths that preserve evaluator-recorded RRF calls, call and node identities, producer references, and structured I/O profiles. Workflow structure is independent of analytical support; BM25 currently has no analytical model and hybrid performance requires measured execution. The compiler never invents fusion from query expansion. Derived means and counts supply component table preparation, query encoding, and analytical communication inputs. Component cost tables contain component batch times at representative lengths and feed system candidate construction; the RAGO adapter combines separate search and fusion tables only at its external boundary. Trace analysis independently computes candidate throughput and latency from call costs and resource demand, then shortlists by the objective. Closed-loop simulation uses the same compiled paths and separate component services to predict final throughput and mean latency. Component cost tables do not directly feed the simulator. One configured objective controls shortlisting and final selection.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#31566e"/>
+    </marker>
+    <marker id="trace-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#7546a4"/>
+    </marker>
+    <marker id="model-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#087c7b"/>
+    </marker>
+    <marker id="objective-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#a7640e"/>
+    </marker>
+    <style>
+      text { font-family: "DejaVu Sans", Arial, sans-serif; fill: #183547; }
+      .title { font-size: 32px; font-weight: 700; }
+      .heading { font-size: 23px; font-weight: 700; }
+      .body { font-size: 19px; fill: #365467; }
+      .small { font-size: 17px; fill: #496579; }
+      .input { fill: #f7fafc; stroke: #a2b6c5; stroke-width: 1.6; }
+      .node { fill: #ffffff; stroke: #87a9c2; stroke-width: 1.6; }
+      .flow { fill: none; stroke: #31566e; stroke-width: 2.6; stroke-linejoin: round; marker-end: url(#arrow); }
+      .trace { fill: none; stroke: #7546a4; stroke-width: 2.8; stroke-linejoin: round; marker-end: url(#trace-arrow); }
+      .model { fill: none; stroke: #087c7b; stroke-width: 2.6; stroke-dasharray: 8 5; stroke-linejoin: round; marker-end: url(#model-arrow); }
+      .objective { fill: none; stroke: #a7640e; stroke-width: 2.6; stroke-dasharray: 5 4; stroke-linejoin: round; marker-end: url(#objective-arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1120" fill="#ffffff"/>
+  <text x="40" y="49" class="title">RAG-CM: from component execution time to system performance</text>
+  <text x="40" y="80" class="body">A component table estimates one stage. Analytical scoring and simulation evaluate a complete deployment.</text>
+
+  <!-- Inputs: schema and configuration apply throughout the pipeline. -->
+  <rect x="40" y="110" width="420" height="120" rx="12" class="input"/>
+  <text x="62" y="144" class="heading">Workflow schema</text>
+  <text x="62" y="174" class="body">Nodes, inputs, and execution order</text>
+  <text x="62" y="203" class="body">Corpus, prompt, and index statistics</text>
+  <rect x="500" y="110" width="500" height="120" rx="12" class="input"/>
+  <text x="522" y="144" class="heading">Algorithm + system configuration</text>
+  <text x="522" y="174" class="body">Models, retrieval parameters, hardware</text>
+  <text x="522" y="203" class="body">Placement, resource, and batch search choices</text>
+  <rect x="1120" y="110" width="440" height="120" rx="12" fill="#faf5ff" stroke="#b69acd" stroke-width="1.6"/>
+  <text x="1142" y="144" class="heading">Quality trace</text>
+  <text x="1142" y="174" class="body">One ordered call sequence per request</text>
+  <text x="1142" y="203" class="body">Observed stages and structured I/O sizes</text>
+  <text x="40" y="253" class="small">Schema and configuration supply the calculations below; BM25 analytical modeling is unavailable.</text>
+
+  <!-- Workload-derived scalars and component functions have separate meanings. -->
+  <rect x="40" y="310" width="420" height="145" rx="12" fill="#fff9ec" stroke="#d5b475" stroke-width="1.6"/>
+  <text x="62" y="345" class="heading">Derived trace statistics</text>
+  <text x="62" y="377" class="body">Mean generator input length</text>
+  <text x="62" y="406" class="body">Mean generation calls per request</text>
+  <text x="62" y="435" class="body">Retrieval lengths + fusion I/O profiles</text>
+
+  <rect x="500" y="310" width="500" height="145" rx="12" fill="#eefaf8" stroke="#6ca9a3" stroke-width="1.6"/>
+  <text x="522" y="345" class="heading">Component cost models</text>
+  <text x="522" y="377" class="body">Input shape + batch + hardware / parallelism</text>
+  <text x="522" y="406" class="body">→ predicted component execution time</text>
+  <text x="522" y="435" class="small">Encoding uses the mean retrieval-query length.</text>
+
+  <rect x="1120" y="310" width="440" height="145" rx="12" fill="#faf5ff" stroke="#b69acd" stroke-width="1.6"/>
+  <text x="1142" y="345" class="heading">Compile execution paths</text>
+  <text x="1142" y="377" class="body">Keep call/node IDs and producer refs</text>
+  <text x="1142" y="406" class="body">Preserve observed RRF and I/O profiles</text>
+  <text x="1142" y="435" class="small">Call order and I/O sizes remain unchanged.</text>
+
+  <path d="M 750 230 V 310" class="flow"/>
+  <path d="M 1340 230 V 310" class="trace"/>
+  <path d="M 1120 335 H 1030 V 280 H 762 Q 750 265 738 280 H 250 V 310" class="trace"/>
+  <text x="270" y="299" class="small">Compute means and counts</text>
+  <path d="M 460 380 H 500" class="flow"/>
+
+  <!-- Two evaluation stages. -->
+  <rect x="40" y="515" width="1030" height="430" rx="16" fill="#f1f6fc" stroke="#b6cee3" stroke-width="1.5"/>
+  <text x="395" y="547" class="heading">Analytical evaluation and shortlisting</text>
+  <rect x="1120" y="515" width="440" height="430" rx="16" fill="#f0f9f5" stroke="#b2d8c6" stroke-width="1.5"/>
+  <text x="1144" y="547" class="heading">Simulation and selection</text>
+
+  <rect x="70" y="585" width="290" height="135" rx="10" class="node"/>
+  <text x="88" y="618" class="heading" style="font-size: 20px">Component cost tables</text>
+  <text x="88" y="649" class="body">Fixed model + input shape</text>
+  <text x="88" y="677" class="body">Rows: batch, devices, TP/PP</text>
+  <text x="88" y="705" class="body">Batch / step time (ms)</text>
+
+  <rect x="395" y="585" width="290" height="135" rx="10" class="node"/>
+  <text x="413" y="618" class="heading" style="font-size: 21px">System candidates</text>
+  <text x="413" y="649" class="body">RAGO configuration sweep</text>
+  <text x="413" y="677" class="body">Resolve devices and TP/PP</text>
+  <text x="413" y="705" class="body">Check memory feasibility</text>
+
+  <rect x="720" y="585" width="320" height="135" rx="10" class="node"/>
+  <text x="740" y="618" class="heading">Trace analysis</text>
+  <text x="740" y="649" class="body">Price calls for each candidate</text>
+  <text x="740" y="677" class="body">Accumulate resource demand</text>
+  <text x="740" y="705" class="body">Predict QPS + mean latency</text>
+
+  <rect x="70" y="790" width="615" height="125" rx="10" fill="#fffdf7" stroke="#d5b475" stroke-width="1.5"/>
+  <text x="90" y="821" class="heading" style="font-size: 21px">Analytical communication inputs</text>
+  <text x="90" y="851" class="body">Prefill/decode handoffs and payload sizes</text>
+  <text x="90" y="878" class="body">Estimate transfer latency and bandwidth demand</text>
+  <text x="90" y="902" class="small">Account for placement and link characteristics.</text>
+
+  <rect x="720" y="825" width="320" height="90" rx="10" class="node"/>
+  <text x="740" y="860" class="heading">Analytical shortlist</text>
+  <text x="740" y="890" class="body">Apply performance objective</text>
+
+  <rect x="1150" y="585" width="380" height="155" rx="10" fill="#ffffff" stroke="#7fb89f" stroke-width="1.6"/>
+  <text x="1170" y="620" class="heading">Closed-loop simulation</text>
+  <text x="1170" y="652" class="body">Execute compiled paths and transfers</text>
+  <text x="1170" y="681" class="body">Queues, batching, caches, sharing</text>
+  <text x="1170" y="713" class="body" font-weight="700">Final QPS + mean latency</text>
+
+  <rect x="1150" y="825" width="380" height="90" rx="10" fill="#ffffff" stroke="#7fb89f" stroke-width="1.6"/>
+  <text x="1170" y="860" class="heading">Select configuration</text>
+  <text x="1170" y="890" class="body">Use simulated performance</text>
+
+  <!-- Sampled tables and communication consume derived scalars. -->
+  <path d="M 180 455 V 585" class="flow"/>
+  <text x="194" y="492" class="small">Mean lengths</text>
+  <path d="M 40 420 H 20 V 850 H 70" class="flow"/>
+  <path d="M 550 455 V 480 H 350 V 585" class="model"/>
+  <path d="M 360 650 H 395" class="flow"/>
+  <path d="M 685 650 H 720" class="flow"/>
+  <path d="M 685 845 H 703 V 700 H 720" class="flow"/>
+
+  <!-- Component functions, rather than the sampled table, price both stages. -->
+  <path d="M 920 455 V 480 H 1018 V 585" class="model"/>
+  <path d="M 1000 420 H 1104 V 708 H 1150" class="model"/>
+  <path d="M 1120 392 H 1085 V 565 H 1035 V 585" class="trace"/>
+  <path d="M 1560 390 H 1580 V 650 H 1530" class="trace"/>
+
+  <path d="M 880 720 V 825" class="flow"/>
+  <text x="898" y="761" class="small">Analytical scores</text>
+  <text x="898" y="786" class="small">QPS + latency</text>
+  <path d="M 1040 870 H 1090 V 666 H 1150" class="flow"/>
+  <path d="M 1340 740 V 825" class="flow"/>
+
+  <!-- The same objective governs both decisions. -->
+  <rect x="720" y="992" width="810" height="65" rx="10" fill="#fff9ec" stroke="#d5b475" stroke-width="1.5"/>
+  <text x="1125" y="1019" text-anchor="middle" class="heading" style="font-size: 21px">Performance objective</text>
+  <text x="1125" y="1045" text-anchor="middle" class="body">Minimize latency or maximize throughput</text>
+  <path d="M 880 992 V 915" class="objective"/>
+  <path d="M 1340 992 V 915" class="objective"/>
+
+  <path d="M 45 985 H 100" class="trace"/>
+  <text x="113" y="992" class="body">Trace / derived statistics</text>
+  <path d="M 45 1020 H 100" class="model"/>
+  <text x="113" y="1027" class="body">Component model evaluation</text>
+  <path d="M 45 1055 H 100" class="flow"/>
+  <text x="113" y="1062" class="body">Candidate / result / parameter flow</text>
+  <text x="40" y="1101" class="small">Batch choices come from configuration. Repeated calls contribute service demand; they do not redefine the configured batch.</text>
+</svg>

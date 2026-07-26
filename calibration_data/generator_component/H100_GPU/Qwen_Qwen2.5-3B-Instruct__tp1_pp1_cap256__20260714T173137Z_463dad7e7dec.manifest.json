@@ -1,0 +1,69 @@
+{
+  "fit_latency_source": "component_service_s",
+  "hardware_key": "H100_GPU",
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "points": [
+    {
+      "client_batch": 4,
+      "component_service_s": 0.9051751505360007,
+      "input_tokens": 304,
+      "offline_cohort_qps_diagnostic": 2.2400269104449104,
+      "offline_cohort_wall_s_diagnostic": 1.7859054595028283,
+      "output_tokens": 256,
+      "split": "fit"
+    },
+    {
+      "client_batch": 16,
+      "component_service_s": 0.570597151465714,
+      "input_tokens": 560,
+      "offline_cohort_qps_diagnostic": 15.456005133872765,
+      "offline_cohort_wall_s_diagnostic": 1.0352745994969155,
+      "output_tokens": 128,
+      "split": "validation"
+    },
+    {
+      "client_batch": 64,
+      "component_service_s": 1.2701894054412841,
+      "input_tokens": 304,
+      "offline_cohort_qps_diagnostic": 26.304267865405272,
+      "offline_cohort_wall_s_diagnostic": 2.4346095555083593,
+      "output_tokens": 256,
+      "split": "validation"
+    },
+    {
+      "client_batch": 64,
+      "component_service_s": 2.5441743861585855,
+      "input_tokens": 2096,
+      "offline_cohort_qps_diagnostic": 19.87866202878425,
+      "offline_cohort_wall_s_diagnostic": 3.2201701990052243,
+      "output_tokens": 128,
+      "split": "fit"
+    },
+    {
+      "client_batch": 256,
+      "component_service_s": 4.618300925165414,
+      "input_tokens": 304,
+      "offline_cohort_qps_diagnostic": 30.18781381100132,
+      "offline_cohort_wall_s_diagnostic": 8.480505767503928,
+      "output_tokens": 512,
+      "split": "fit"
+    }
+  ],
+  "raw_telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_component/H100_GPU/Qwen_Qwen2.5-3B-Instruct__tp1_pp1_cap256__20260714T173137Z_463dad7e7dec.jsonl",
+  "raw_telemetry_sha256": "fc8b298011d3ed3349b4c45f55430973fed19dfd645447ad91da054de16342bd",
+  "reference_execution": {
+    "dtype": "bfloat16",
+    "enable_prefix_caching": false,
+    "kv_cache_dtype": "auto",
+    "max_model_len": 4096,
+    "max_num_batched_tokens": 262144,
+    "max_num_seqs": 256,
+    "mode": "offline_inprocess_engine_full_cohort_enqueue",
+    "pipeline_parallel_size": 1,
+    "tensor_parallel_size": 1
+  },
+  "repeats": 2,
+  "schema": "rag_stack.v1.generator_component_measurement",
+  "schema_version": 2,
+  "token_shape_proof": "direct_prompt_token_ids_and_ignore_eos_output_lengths_equal_request"
+}

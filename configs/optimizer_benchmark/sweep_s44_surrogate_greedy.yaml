@@ -1,0 +1,44 @@
+# greedy-only arm of the s44 surrogate race (ax/agent arms are run separately
+# by the user). Same function/settings as sweep_s44_surrogate.yaml.
+#
+#   python -m rag_stack benchmark --config configs/optimizer_benchmark/sweep_s44_surrogate_greedy.yaml
+#
+# ONE seed only: greedy is fully deterministic (the seed is a run label, never
+# an RNG input), so extra seeds would replay byte-identical trajectories.
+defaults:
+  gt_budget: 50
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/s44_surrogate
+  seeds: [42]
+  auto_analyze: false
+
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: s44_surrogate
+  params:
+    yaml_path: configs/optimizer_benchmark/_surrogate_s44_space.yaml
+    historical_eval_dirs:
+    - benchmarks/surrogate_s44/agent
+    - benchmarks/surrogate_s44/ax
+    - benchmarks/surrogate_s44/greedy
+    sub_metrics:
+    - deepeval_answer_correctness
+    - retrieval_token_recall
+    - retrieval_token_precision
+
+optimizers:
+- type: greedy
+  name: greedy_forward
+  params:
+    search_mode: forward
+    beam_width: 3
+    stage_weight: log
+
+- type: greedy
+  name: greedy_lookback
+  params:
+    search_mode: lookback
+    beam_width: 3
+    stage_weight: log
+    pass_budget_fraction: 0.6
+    max_passes: 8

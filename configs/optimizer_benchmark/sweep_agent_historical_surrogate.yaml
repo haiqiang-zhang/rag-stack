@@ -1,0 +1,54 @@
+# Agent-guided qNEHVI vs ax_qnehvi_mixedgp on the REAL-data historical surrogate,
+# run through the unified `python -m rag_stack benchmark` CLI (replaces the deprecated
+# analysis/race_agent.py + auto_evolve harness). The LLM agent needs the real RAG
+# search space + real-data landscape, so the surrogate is rag_stack_historical_surrogate
+# (GP fit on benchmarks/historical_surrogate/ax_correctness) — NOT synthetic_rag
+# (abstract leaderboard, shown not to transfer to reality).
+#
+#   python -m rag_stack benchmark --config configs/optimizer_benchmark/sweep_agent_historical_surrogate.yaml
+#
+# Metric is the CLI's hv_diff / IGD against a frozen Pareto cache (regret, lower=better),
+# not race_agent's absolute hv_norm — build the cache once with build_pareto_cache.
+
+defaults:
+  gt_budget: 50            # total GT evals per (optimizer, seed)
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/agent_historical
+  seeds: [42, 43, 44]
+  auto_analyze: false
+
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: rag_historical_surrogate
+  params:
+    yaml_path: configs/rag_stack/sgs_h100_ax_correctness.yaml
+    # historical_eval_dirs omitted → uses the hardcoded DEFAULT_HISTORICAL_EVAL_DIRS
+    # (all 4 runs under benchmarks/historical_surrogate/, ≈195 rows). Add an explicit
+    # list here only to override (e.g. a subset).
+    sub_metrics:
+    - deepeval_answer_correctness
+    - deepeval_answer_relevancy
+    - deepeval_context_recall
+    - deepeval_context_precision
+    - retrieval_recall
+
+optimizers:
+# golden baseline — BoTorch-native mixed-kernel qNEHVI
+- type: ax_qnehvi_mixedgp
+  name: ax_mixedgp_golden
+  params:
+    n_both_init: 10
+
+# ① inject-only, MO-aware agent — the HV champion on the historical surrogate
+- type: agent_qnehvi
+  name: agent_mo_inject
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash
+
+# mixhier — unified pool (Sobol breadth + native-dls depth + agent knowledge) + hierarchy fixes
+- type: agent_qnehvi
+  name: agent_mixhier
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash

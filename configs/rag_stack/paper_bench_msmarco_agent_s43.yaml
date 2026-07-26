@@ -1,0 +1,313 @@
+# paper_bench_msmarco_agent_s43.yaml — 6-section schema.
+# Optimizer: agent_qnehvi (LLM-agent-assisted qNEHVI — the agent MOBO method).
+# GENERATED from paper_bench_msmarco_smac_s43.yaml (see benchmarks/optimizer_ablation/
+# README_msmarco_methods.md): identical dataset/system/search space; only the
+# optimizer block and the diagnostic metric set differ (context precision/recall on a
+# 15-query subset feed the proposal agent's prompt; the quality OBJECTIVE stays
+# answer_correctness, judged by the NVIDIA judge server's Qwen2.5-14B).
+#
+# Pairs 1:1 with paper_bench_agent_s43.yaml / paper_bench_ax_s43.yaml: IDENTICAL search space (dataflow
+# knob sequential/react with dependents gating, react = retrieval + OPTIONAL
+# reranker + generator, IVF+HNSW index families), IDENTICAL system/dataset.
+# Only `optimizer:` and the quality-metric set differ — ax reads a single
+# scalar (answer_correctness), the agent reads the full deepeval sub-metrics.
+# SMAC3 multi-objective baseline (random-forest surrogate); the Ax
+# `dependents` hierarchy maps to ConfigSpace EqualsCondition edges, so it
+# searches the SAME gated space.
+global:
+  eval_backend: static_gt
+  rag_ir_mode: dynamic          # explicit (= default) — trace+workflow-schema replay via the DYNAMIC engine (sequential & react alike); `static` = aggregate token-stats via the static engine
+  n_iterations: 50
+  gen_fingerprint_dedup: true   # M3: identical generation inputs inherit the donor quality (GT_FP, no budget seat)
+dataset:
+  # MS MARCO full-scale protocol: the COMPLETE 8.84M-passage corpus (Tevatron
+  # msmarco-passage-corpus) searched end-to-end, quality scored on a 100-query
+  # seed-fixed sample of the v2.1 dev answerable set (qa_test — same budget as
+  # dragonball qa_en_sample_100). qa carries `references` = the annotator-
+  # selected GOLD passages (is_selected==1), so retrieval_token_* metrics score
+  # against real retrieval GT text, not the short answer.
+  dataset_name: msmarco_full
+  qa: datasets/msmarco_full/qa_test.parquet
+  corpus: datasets/msmarco_full/corpus.parquet
+system:
+  system_hardware: sgs_h100x4_epyc9124
+  # Current SGS system: 4×H100 NVL + 2×EPYC 9124. Hardware specs resolve
+  # from the canonical cpu/gpu preset keys and their matching calibration keys.
+  # The physical 2-pair fabric is declared below; current measured s44/s45
+  # results are the validation source for these cost-model configurations.
+  performance_source: cost_model
+  cpu: epyc_9124
+  gpu: H100_GPU
+  # Real sysB link topology: two NVLink4 pairs (0↔1, 2↔3) at 300 GB/s per direction with a
+  # PCIe5 PXB fallback for cross-pair traffic; host links PCIe5.
+  interconnect:
+    gpu_gpu:
+      type: h100_nvl_2pair
+      bandwidth_gbps: 300
+      latency_us: 0.4
+      fallback:
+        type: pcie5_pxb
+        bandwidth_gbps: 54
+        latency_us: 1.0
+      links:
+      - devices:
+        - cuda:0
+        - cuda:1
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+      - devices:
+        - cuda:2
+        - cuda:3
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+    gpu_cpu:
+      type: pcie5_host
+      bandwidth_gbps: 54
+      latency_us: 0.8
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    faiss_num_threads:           # explicit DERIVE: min(batch, physical cores) —
+                                 # the single policy shared by CM and measured
+    faiss_ivf_parallel_mode: 0   # scalar PIN (inter-query) — CM-managed knob;
+                                 # delete to let the CM sweep {0,1} per batch
+  cm_search_space:
+    placement_policy:
+    - collocated
+    - disaggregated
+    min_num_gpus: 4
+    max_num_gpus: 4
+    max_num_gpus_per_stage: 4
+    gpus_per_server: 4
+    max_batch_size_request: 256
+    no_microbatching: true
+    # DEFAULT-ON deployment axes (code defaults — set lists here to override):
+    #   batch_size_decode: powers of 2 ≤ max_batch_size_request, decode ≥ request
+    #     (agentic rows; decode-engine concurrency, calibrated on e2e react cases)
+    #   dynamic_batch_timeout_s: [0.002, 0.01, 0.05]
+    #     (no-op priced in the saturated regime — measured-backed; tie→smallest)
+optimizer:
+  type: agent_qnehvi
+  params:
+    seed: 43
+    n_both_init: 10
+    agent_model: deepseek-v4-flash
+    agent_strict: true
+    n_candidates: 256
+eval_backend_setting:
+  # Quality scalar = combined_quality = JUST deepeval_answer_correctness.
+  # ax_qnehvi_mixedgp has NO topo surrogate and does NOT read sub-metrics, so the
+  # 5 auxiliary LLM-judge metrics (faithfulness, answer_relevancy, context_*) would
+  # be ~6× the judge cost per eval with ZERO effect on the search or the Pareto.
+  # Dropped here so this run is symmetric with the single quality signal and far
+  # faster. Only the free token-overlap retrieval metrics (no judge call) are kept.
+  combined_quality:
+    mode: mean
+    metrics:
+    - deepeval_answer_correctness
+  metrics:
+  - metric_name: deepeval_answer_correctness
+    model: vllm/Qwen/Qwen2.5-14B-Instruct
+    description: GEval-based factual correctness — LLM-judge compares generated answer (actual_output) to gold answer (generation_gt). Score ∈ [0,1]. THE business target.
+  - metric_name: retrieval_token_recall
+    description: Token-overlap recall of the retrieval-GT text (references when present, else the answer) against the retrieved chunk text (pre-reranker) — chunker-invariant (matches TEXT, not chunk IDs).
+  - metric_name: retrieval_token_precision
+    description: Token-overlap precision — fraction of the retrieved chunk text that matches the retrieval-GT text (references/answer); chunker-invariant, pairs with retrieval_token_recall.
+  - metric_name: deepeval_context_precision
+    model: vllm/Qwen/Qwen2.5-14B-Instruct
+    description: Of the chunks fed to the generator, how many are genuinely relevant and are the relevant ones ranked first? A retrieval-quality signal — index fidelity, top_k, reranking all move it; query expansion upstream changes what gets retrieved. In tension with recall.
+  - metric_name: deepeval_context_recall
+    model: vllm/Qwen/Qwen2.5-14B-Instruct
+    description: Does the retrieved context actually contain the information needed to answer (coverage of the gold facts)? Retrieval-side — index, top_k, reranker. Loosening retrieval raises recall but tends to cost precision.
+  submetric_query_subset: 15
+algo_search_space:
+  vectordb:
+  # Index FAMILY is a search dimension: the semantic_retrieval module's dict-form
+  # `vectordb` selector sweeps the family names and is compiled into REAL Ax
+  # gating — the non-chosen family's block params here (and its nested query-time
+  # knob) are INACTIVE per trial, and the resolver drops the unreferenced block
+  # entirely. No phantom dims: GP/RF inputs stay clean and no eval budget lands
+  # on inert knobs.
+  - name: faiss_ivf_index
+    db_type: faiss_ivf
+    embedding_model: huggingface_all_mpnet_base_v2   # FIXED to one embedder (768-dim, DERIVED) — index-build over 8.84M vectors is too slow to sweep 3
+    embedding_dtype_bytes: 4  # serialized FAISS query vector is float32
+    collection_name: my_index
+    # embedding_dim is DERIVED from embedding_model (EMBEDDING_MODEL_DIMS) — do not set.
+    nlist_factor:
+    - 1
+    - 4
+    index_type:                            # search dim: IVF-PQ vs IVF-Flat
+      pq:
+        dsub:                              # search dim: target sub-vector dim (=D/M). M is DERIVED
+        - 4
+        - 32
+        nbits:
+        - 4
+        - 8
+      flat: {}
+  - name: faiss_hnsw_index
+    db_type: faiss_hnsw
+    embedding_model: huggingface_all_mpnet_base_v2   # FIXED to one embedder (768-dim, DERIVED) — index-build over 8.84M vectors is too slow to sweep 3
+    embedding_dtype_bytes: 4  # serialized FAISS query vector is float32
+    collection_name: my_hnsw_index
+    # embedding_dim is DERIVED from embedding_model (EMBEDDING_MODEL_DIMS) — do not set.
+    M:                            # HNSW build-time: graph degree (search dim; D-independent)
+    - 16
+    - 48
+    ef_construction:              # HNSW build-time: build-time candidate breadth (search dim)
+    - 100
+    - 400
+  corpus:
+    # msmarco_full: chunker PINNED (scalars = fixed values, NOT search dims) —
+    # the ONLY deviation from the dragonball twin, forced by the dataset:
+    # MS MARCO passages ARE natural retrieval chunks (p50 322 / p99.9 944
+    # chars; 0.009% exceed 2048), so 2048/character is a 1:1 passthrough and
+    # the vector count stays == the 8.84M corpus rows. Sweeping 128/256-char
+    # chunks would multiply the corpus to 20-40M chunks: 100+ GB embedding
+    # arrays per model and multi-hour per-trial index builds — infeasible.
+    chunker:
+      chunk_size: 2048
+      component: character
+  pipeline:
+    # ── Dataflow knob (the autorag_co pattern): ONE shared node_lines,
+    #    `rag_dataflow` picks sequential vs react per trial. It is a FLAT
+    #    knob (shared stages share dims across modes), and the gate PARENT of
+    #    the mode-specific params: under react the sequential-only stages
+    #    (query_expansion / passage_compressor / prompt_maker) are gated OFF
+    #    in the search space AND stripped from the resolved node_lines;
+    #    `max_iter` is react-only. react runs retrieval + OPTIONAL
+    #    passage_reranker + generator — the reranker head stays searchable in
+    #    BOTH modes. The same gating applies to BOTH optimizers, so the
+    #    ax/agent comparison stays fair. ──
+    rag_dataflow:
+    - sequential
+    - react:                     # react sub-config — knobs active only when react is chosen
+        max_iter:                # max Thought/Action/Observation rounds (the loop's ONLY cap)
+        - 3
+        - 5
+        - 10
+        - 15
+    node_lines:
+    - node_line_name: pre_retrieve_node_line
+      nodes:
+      - stage: query_expansion
+        optional: true
+        modules:
+        - component: query_decompose
+          generator_backend: vllm_api
+          uri: ${RAG_LLM_BASE_URL}        # OpenAI-compatible LLM endpoint — SET to your server's URL
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: hyde
+          generator_backend: vllm_api
+          uri: ${RAG_LLM_BASE_URL}        # OpenAI-compatible LLM endpoint — SET to your server's URL
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: multi_query_expansion
+          generator_backend: vllm_api
+          uri: ${RAG_LLM_BASE_URL}        # OpenAI-compatible LLM endpoint — SET to your server's URL
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+    - node_line_name: retrieve_node_line
+      nodes:
+      - stage: semantic_retrieval
+        modules:
+        - component: vectordb
+          vectordb:                # SEARCH DIM: index family — per-family query-time knobs nest under their family
+            faiss_ivf_index:
+              nprobe: [8, 16, 32, 64]
+            faiss_hnsw_index:
+              ef_search: [32, 64, 128, 256]
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_reranker    # searchable in BOTH modes (react reranks each round)
+        optional: true
+        modules:
+        - component: tart
+          bits: f32
+        - component: monot5
+          bits: f32
+        - component: colbert_reranker
+          bits: f32
+        - component: sentence_transformer_reranker
+          bits: f32
+        - component: flag_embedding_reranker
+          bits: f32
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_compressor  # sequential-only (gated off + stripped under react)
+        optional: true
+        modules:
+        - component: llmlingua2
+          rate:
+          - 0.3
+          - 0.5
+          - 0.7
+    - node_line_name: post_retrieve_node_line
+      nodes:
+      - stage: prompt_maker        # sequential-only (react builds its own agentic prompt)
+        modules:
+        - component: fstring
+          prompt: "Read the passages and answer the given question.\n Question: {query}\n Passage: {retrieved_contents}\n Answer :"
+        - component: long_context_reorder
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+        - component: window_replacement
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+      - stage: generator
+        modules:
+        - component: vllm_api
+          uri: ${RAG_LLM_BASE_URL}        # OpenAI-compatible LLM endpoint — SET to your server's URL
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          max_tokens: 512
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0

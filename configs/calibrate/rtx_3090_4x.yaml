@@ -1,0 +1,14 @@
+# Calibrate-target hardware for the 4×RTX-3090 box. The `rag_stack calibrate` framework
+# reads ONLY this `system` block (the CM needs the hardware spec anyway):
+#   - gpu : preset key  → all GPU params resolve from genz_llm/Systems/system_configs.py
+#   - cpu : preset key  → CPU spec from CPU_SPECS + the committed faiss base profile
+#   - available_gpus    → GPU count for the GPU-aware generator-tp case selection
+# Key-only: no inline spec dicts. Hardware key = gpu.hardware_key (rtx_3090) / cpu (epyc_9124).
+system:
+  performance_source: measured
+  gpu: rtx_3090
+  cpu: epyc_7313          # AMD EPYC 7313 (2S, 32 cores, Zen 3 Milan) — this box's actual CPU
+  available_gpus: [cuda:0, cuda:1, cuda:2, cuda:3]
+  interconnect:
+    gpu_gpu: {type: pcie4_p2p, bandwidth_gbps: 52, latency_us: 1.0}
+    gpu_cpu: {type: pcie4_host, bandwidth_gbps: 27, latency_us: 1.0}

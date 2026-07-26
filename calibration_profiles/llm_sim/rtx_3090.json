@@ -1,0 +1,370 @@
+{
+  "profiles": {
+    "agnostic__Qwen/Qwen2.5-1.5B__bf16": {
+      "bits": "bf16",
+      "component": "agnostic",
+      "compute_efficiency": 1.0,
+      "correlation": 0.9987745502095984,
+      "fit_mape": 0.029986916343759717,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 0.6929870879994269,
+          "predicted_s": 0.6929870918528624,
+          "rel_err": 5.560616694544257e-09,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 0.7773916210007883,
+          "predicted_s": 0.7891553585809461,
+          "rel_err": 0.015132318463908268,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.8501581074997375,
+          "predicted_s": 0.8001235975566379,
+          "rel_err": -0.058853182133671654,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 1.1766266079994239,
+          "predicted_s": 1.184796664468972,
+          "rel_err": 0.006943627157505314,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 1.25686323500031,
+          "predicted_s": 1.2286696203717387,
+          "rel_err": -0.02243172832449374,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 2.5705583079998178,
+          "predicted_s": 2.7673618880210755,
+          "rel_err": 0.07656063642236265,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.5981957817185932,
+      "model_key": "Qwen/Qwen2.5-1.5B"
+    },
+    "agnostic__Qwen/Qwen2.5-14B__bf16": {
+      "bits": "bf16",
+      "component": "agnostic",
+      "compute_efficiency": 1.0,
+      "correlation": 0.9999555146564171,
+      "fit_mape": 0.01931576562874764,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 2.758561770000597,
+          "predicted_s": 2.715035737840109,
+          "rel_err": -0.015778523661798802,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 3.1322953670005518,
+          "predicted_s": 3.12099124319687,
+          "rel_err": -0.003608894589818535,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 3.1935016389998054,
+          "predicted_s": 3.1935016561435576,
+          "rel_err": 5.368324220120244e-09,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 4.666160353500345,
+          "predicted_s": 4.8173236775706005,
+          "rel_err": 0.03239565566083889,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 4.986329292000846,
+          "predicted_s": 5.1073653293573535,
+          "rel_err": 0.02427357486210857,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 11.158136256500256,
+          "predicted_s": 11.602653415065525,
+          "rel_err": 0.03983793962959647,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.7219589050644442,
+      "model_key": "Qwen/Qwen2.5-14B"
+    },
+    "agnostic__Qwen/Qwen2.5-3B__bf16": {
+      "bits": "bf16",
+      "component": "agnostic",
+      "compute_efficiency": 0.9427962989226546,
+      "correlation": 0.9977793520309537,
+      "fit_mape": 0.03816839609945026,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 1.25634538399936,
+          "predicted_s": 1.2563454009000357,
+          "rel_err": 1.3452252830330006e-08,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 1.4118699520004157,
+          "predicted_s": 1.441165428806058,
+          "rel_err": 0.020749415882202832,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 1.5694422249989657,
+          "predicted_s": 1.4550873460682363,
+          "rel_err": -0.07286338873086248,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 2.2084948110004916,
+          "predicted_s": 2.194367457692327,
+          "rel_err": -0.0063968243157269435,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 2.3445572869995885,
+          "predicted_s": 2.2500551267410414,
+          "rel_err": -0.04030703825517733,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 4.782957403499495,
+          "predicted_s": 5.207175573237402,
+          "rel_err": 0.08869369596047916,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.6604421334280414,
+      "model_key": "Qwen/Qwen2.5-3B"
+    },
+    "agnostic__Qwen/Qwen2.5-7B__bf16": {
+      "bits": "bf16",
+      "component": "agnostic",
+      "compute_efficiency": 1.0,
+      "correlation": 0.9997451785045861,
+      "fit_mape": 0.022407015825624006,
+      "grid": [
+        {
+          "batch_size": 1,
+          "measured_s": 2.631380151000485,
+          "predicted_s": 2.5945743586593215,
+          "rel_err": -0.013987257723734636,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 1,
+          "measured_s": 2.983802000000651,
+          "predicted_s": 2.96251043933726,
+          "rel_err": -0.0071357149916068,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 2.9936602190000485,
+          "predicted_s": 2.9936602930279568,
+          "rel_err": 2.472822659632674e-08,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 4.3552094104998105,
+          "predicted_s": 4.465404615739713,
+          "rel_err": 0.025301930367397942,
+          "seq_len": 512
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 4.568112116498924,
+          "predicted_s": 4.590004030502499,
+          "rel_err": 0.0047923329036752005,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 9.672028363999743,
+          "predicted_s": 10.476981321349523,
+          "rel_err": 0.08322483423910287,
+          "seq_len": 512
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.7316330440719006,
+      "model_key": "Qwen/Qwen2.5-7B"
+    },
+    "monot5__monot5-3b__f32": {
+      "bits": "f32",
+      "component": "monot5",
+      "compute_efficiency": 0.28761541262124907,
+      "correlation": 0.998146740409581,
+      "fit_mape": 0.069467644681839,
+      "grid": [
+        {
+          "batch_size": 4,
+          "measured_s": 0.13855104064941406,
+          "predicted_s": 0.11043995130046859,
+          "rel_err": -0.20289338295247483,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.23250941467285155,
+          "predicted_s": 0.20994961402076226,
+          "rel_err": -0.09702747169972312,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.332612548828125,
+          "predicted_s": 0.3107212222656462,
+          "rel_err": -0.06581629779034887,
+          "seq_len": 384
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.22712911987304688,
+          "predicted_s": 0.22087990260093718,
+          "rel_err": -0.027513941301770015,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.4128868103027344,
+          "predicted_s": 0.4198992280415245,
+          "rel_err": 0.016983874427106378,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.6214424438476562,
+          "predicted_s": 0.6214424445312924,
+          "rel_err": 1.1000795881573102e-09,
+          "seq_len": 384
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 0.39980029296875,
+          "predicted_s": 0.44175980520187436,
+          "rel_err": 0.10495117930392325,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 0.7804217529296875,
+          "predicted_s": 0.839798456083049,
+          "rel_err": 0.07608283973436487,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 1.2020863037109375,
+          "predicted_s": 1.2428848890625848,
+          "rel_err": 0.03393981382675997,
+          "seq_len": 384
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.9992719823574904,
+      "model_key": "monot5-3b"
+    },
+    "tart__tart_flan_t5_xl__f32": {
+      "bits": "f32",
+      "component": "tart",
+      "compute_efficiency": 0.40779646243627077,
+      "correlation": 0.9977388018080106,
+      "fit_mape": 0.05290335626032024,
+      "grid": [
+        {
+          "batch_size": 4,
+          "measured_s": 0.03446499252319336,
+          "predicted_s": 0.030330879277355886,
+          "rel_err": -0.11995108494671519,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.06233318328857422,
+          "predicted_s": 0.05823732788650802,
+          "rel_err": -0.06570906836418508,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 4,
+          "measured_s": 0.09472207641601563,
+          "predicted_s": 0.0870338160526298,
+          "rel_err": -0.08116651000786013,
+          "seq_len": 384
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.06066175842285156,
+          "predicted_s": 0.06066175855471177,
+          "rel_err": 2.1736958123030117e-09,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.1138575668334961,
+          "predicted_s": 0.11647465577301604,
+          "rel_err": 0.022985639095442257,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 8,
+          "measured_s": 0.17986618041992186,
+          "predicted_s": 0.1740676321052596,
+          "rel_err": -0.032238124483017105,
+          "seq_len": 384
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 0.11289353942871094,
+          "predicted_s": 0.12132351710942355,
+          "rel_err": 0.07467192297603437,
+          "seq_len": 128
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 0.21751571655273438,
+          "predicted_s": 0.23294931154603207,
+          "rel_err": 0.07095393030855303,
+          "seq_len": 256
+        },
+        {
+          "batch_size": 16,
+          "measured_s": 0.34521682739257814,
+          "predicted_s": 0.3481352642105192,
+          "rel_err": 0.008453923987379233,
+          "seq_len": 384
+        }
+      ],
+      "hardware_key": "rtx_3090",
+      "memory_efficiency": 0.9974179765290638,
+      "model_key": "tart_flan_t5_xl"
+    }
+  }
+}

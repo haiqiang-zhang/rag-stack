@@ -1,0 +1,240 @@
+# ============================================================================
+# RAG-Stack CONFIG REFERENCE — the canonical 6-section schema, fully annotated.
+# Sections (order is convention, not required):
+#   1 global   2 dataset   3 system   4 vectordb
+#   5 optimizer   6 eval_backend_setting   7 algo_search_space
+# There is NO backward compatibility: the old top-level `data:`, `pipeline:`,
+# `node_lines:`, `gt_evaluation:`, `n_iterations:`, `corpus:`, and
+# `system.search_space:` keys are hard-rejected by ConfigValidator.
+# ============================================================================
+
+# 1. GLOBAL — run-level switches.
+global:
+  eval_backend: static_gt        # static_gt | flashrag — evaluator package owns both backends.
+  rag_ir_mode: dynamic           # dynamic (default) | static — which CM engine prices a trial.
+                                 #   rag_ir = replay the per-eval execution trace (real tokens);
+                                 #   static = config-driven RAGO estimate.
+  n_iterations: 100              # total GT-call budget (Phase 1 init + Phase 2).
+
+# 2. DATASET — source data (CLI --qa-data/--corpus-data override these).
+dataset:
+  dataset_name: dragonball_en   # REQUIRED, explicit id. Keys the IVF cell-imbalance
+                                 # profile (dataset_name__embedding); never path-derived.
+  qa: datasets/dragonball/qa_en_sample_100.parquet
+  corpus: datasets/dragonball/raw_corpus_en.parquet   # RAW corpus — the chunker is a
+                                                      # search dim (algo_search_space.corpus),
+                                                      # so the corpus is re-chunked per eval.
+
+# 3. SYSTEM — hardware + performance source + per-mode deployment search spaces.
+system:
+  # performance_source: cost_model (default, RAGO predicts perf) | measured
+  # (real on-hardware timing; static_gt backend ONLY). Omitted here = cost_model.
+  rag_cm:
+    # This is the only CM YAML knob. Profile roots are process-wide
+    # filesystem contracts; do not add per-config profile-store paths here.
+    # strict (default): every required exact calibration must exist.
+    # uncalibrated_spec: use exact component profiles when present and otherwise
+    # use the analytical physical-hardware specification. stage_batch is
+    # enabled only when its complete six-profile generation is valid; otherwise
+    # the whole stage correction is disabled for a fair deployment sweep.
+    calibration_mode: strict
+  cpu:
+    num_cores: 12
+    peak_flops: 1.04e12
+    peak_int_ops: 1.04e12
+    # Bandwidth has ONE semantic everywhere (NO memory_efficiency knob): store
+    # the AGGREGATE (all-core sustained STREAM) and the SINGLE-THREAD (one-core
+    # sustained STREAM). Effective BW(t) = min(t*single_thread, aggregate); at
+    # t=1 (the calibrated regime) it is exactly the single-thread value. Measure
+    # both with STREAM. If mem_bandwidth_1t is omitted it is derived from
+    # mem_bandwidth × (a tier's bandwidth_1t / bandwidth) — but prefer measuring.
+    mem_bandwidth: 116.5e9         # aggregate (all-core sustained)
+    mem_bandwidth_1t: 14.5e9       # single-thread (one-core sustained)
+    memory_tiers:                  # monotonic L1>L2>L3>DDR required (both columns).
+    - {name: llc, bandwidth: 200e9, bandwidth_1t: 25e9, capacity: 12e6}
+    - {name: ddr, bandwidth: 116.5e9, bandwidth_1t: 14.5e9, capacity: 36e9}
+    num_p_cores: 6                 # heterogeneous (big.LITTLE) flat fields; or use cpu.topology.
+    num_e_cores: 6
+    p_core_clock_ghz: 4.056
+    e_core_clock_ghz: 2.75
+    p_core_flops_per_cycle: 32
+    e_core_flops_per_cycle: 16
+    p_core_int_ops_per_cycle: 32
+    e_core_int_ops_per_cycle: 16
+    thread_migration: true
+  gpu: A100_80GB_GPU             # GenZ preset name, or a custom {hardware_key, Flops, ...} block.
+  # Declarative interconnect for the COMMUNICATION model — system-level (sibling
+  # of `gpu`). Each device-pair is a dict {bandwidth_gbps, latency_us?, type?}
+  # with the numbers written DIRECTLY here — there is NO preset/lookup table.
+  # `type` is a FREE-TEXT LABEL only (e.g. "nvlink4"); it is NOT resolved to any
+  # number. Write your box's MEASURED one-direction payload bandwidth (decimal
+  # GB/s) and per-message latency (µs). Reference values for convenience
+  # (NOT looked up): nvlink3 300/0.5,
+  # nvlink4 450/0.4, pcie4_p2p 50/1.0, pcie5_p2p 100/0.8, pcie4_host 27/1.0,
+  # pcie5_host 54/0.8, host_staged 13/2.0, rdma_100g 12.5/5.0, rdma_200g 25/4.0.
+  # Edge → link by physical transfer: the prefill→decode KV handoff (GPU memory
+  # → GPU memory) uses `gpu_gpu`; every other edge (query vectors, prompt text;
+  # GPU↔CPU host) uses `gpu_cpu`. Omitting a pair (or its bandwidth_gbps) falls
+  # back to the gpu spec's ICN. This declarative block is the only bandwidth schema.
+  interconnect:
+    gpu_gpu: {type: nvlink3, bandwidth_gbps: 300, latency_us: 0.5}   # A100 NVLink3 (write your box's measured value)
+    gpu_cpu: {type: pcie4_host, bandwidth_gbps: 27, latency_us: 1.0}   # GPU↔host PCIe4
+  performance_objectives:
+    selection: max_throughput     # reduces the RAGO sweep to one perf scalar.
+  retrieval:                      # search-time FAISS runtime knobs.
+    faiss_num_threads: null       # int = pin | list = search dim | null/omitted =
+    #                             # DERIVE min(batch, physical cores) — the single
+    #                             # policy shared by CM and measured (an explicit
+    #                             # null documents the intent in the YAML).
+    # faiss_ivf_parallel_mode: 0      # OPTIONAL scalar PIN only. parallel_mode is SYSTEM
+    #                             # design space managed by the COST MODEL — never an
+    #                             # optimizer dim: unpinned, the CM prices both modes
+    #                             # per batch inside its own sweep and keeps the best.
+    #                             # Explicit grid: cm_search_space.faiss_ivf_parallel_mode.
+  cm_search_space:                # cost_model-mode RAGO deployment sweep.
+    placement_policy: [disaggregated, collocated]
+    min_num_gpus: 2
+    max_num_gpus: 4
+    max_num_gpus_per_stage: 4
+    gpus_per_server: 4
+    max_batch_size_request: 256
+    no_microbatching: true
+    allow_decode_collocation: true
+  # system_space_owner: optimizer # WHO searches the deployment space (orthogonal to
+  #                               # performance_source = WHERE perf numbers come from).
+  #                               # omit → derived: cost_model→cost_model, measured→optimizer.
+  #                               # (optimizer, cost_model) = joint-space search, CM prices
+  #                               # the trial's ONE sampled deployment (fixed placement).
+  # system_design_space:        # optimizer-owned system dims (ex measured_search_space —
+  #                             # deprecated alias still read). Required when
+  #                             # system_space_owner=optimizer (incl. performance_source: measured).
+  #   deployment_preset: [collocated_tp4, disagg_2p2d]  # named templates (see
+  #                             # deployment_presets below) → unordered categorical;
+  #                             # suppresses the auto gpu_layout categorical.
+  #   batch_size_request: [1, 8, 16, 32]   # request cohort.
+  #   batch_size_decode: [8, 16, 32, 64]   # generator decode continuous-batch cap.
+  #   dynamic_batch_timeout_s: [0.002, 0.01, 0.05]  # non-vLLM dynamic batching wait.
+  #   vllm_kv_cache_dtype: auto
+  #   available_gpus: [cuda:0, cuda:1]      # real GPU slots (layout is derived, not searched).
+  # deployment_presets:         # policy-level deployment templates (shape-agnostic).
+  #   collocated_tp4: {placement: collocated, num_gpus: {generator: 4}}
+  #   disagg_2p2d:    {placement: pd_disagg,
+  #                    num_gpus: {generator_prefill: 2, generator_decode: 2}}
+  #   disagg_1p2d:    {placement: pd_disagg,           # asymmetric PD: role-qualified
+  #                    num_gpus: {generator_prefill: 1, generator_decode: 2}}
+  #                             # num_gpus values MUST be powers of two; TP is DERIVED
+  #                             # (chips / pipeline_parallel); pd_disagg cuts after
+  #                             # generator_prefill (aux stages ride the prefill side).
+
+# 5. OPTIMIZER — type from OPTIMIZER_REGISTRY (sobol/greedy/ax_qnehvi/ax_qnehvi_mixedgp/
+#    smac_mobo/agent_qnehvi) + per-optimizer params.
+#    For type: agent_qnehvi, optimizer.params also accepts these default-true
+#    YAML booleans: enable_agent, enable_stage_signals, enable_dls, enable_doe
+#    (Pareto-tension crossover), and enable_forced. They control post-init
+#    search; initialization and quality reuse remain enabled. See docs/config_schema.md.
+optimizer:
+  type: smac_mobo
+  params:
+    objectives:
+    - {objective_name: performance, ref_point: -100.0, cost: 5.0}
+    - {objective_name: quality, ref_point: 0, cost: 10.0}
+    n_gt_init: 5
+    seed: 42
+
+# 6. EVAL_BACKEND_SETTING — all eval-backend-specific settings EXCEPT the algo search
+#    space. Keys interpreted per global.eval_backend:
+#      static_gt → combined_quality + metrics (+ queries_per_trial for measured)
+#      flashrag  → metrics + flashrag{framework, model2path, ...}
+#      FlashRAG runtime and its nested dependency belong to RAG-Stack-Evaluator.
+#      Optional install: uv pip install -e FlashRAG
+eval_backend_setting:
+  metrics: [bleu, meteor, rouge]
+
+# 7. ALGO_SEARCH_SPACE — the RAG algorithm dims (corpus chunker + pipeline).
+#    static_gt: pipeline is {node_lines: [...]} (sequential-only, NO mode).
+#    flashrag : pipeline is {methods: [{mode, node_lines, ...}, ...]}.
+algo_search_space:
+  # 4. VECTORDB — index build params + index-building search space (list-valued = swept).
+  vectordb:
+  - name: faiss_ivf_index
+    db_type: faiss_ivf
+    embedding_model: huggingface_all_mpnet_base_v2
+    embedding_dtype_bytes: 4
+    collection_name: my_index
+    embedding_dim: 768
+    # nlist as a FACTOR of sqrt(N) (N = per-eval chunk count), resolved at eval time:
+    #   nlist = clamp(round(factor * sqrt(N)), 1, N)  → nlist > N (untrainable) cannot happen.
+    nlist_factor: [1, 2, 4, 8]
+    index_type:                      # SEARCH DIM: pq = IVF-PQ (compressed; uses M/nbits),
+                                     # flat = IVF-Flat (exact full vectors; M/nbits ignored).
+                                     # Scalar (e.g. `index_type: pq`) pins one; default pq.
+      pq:
+        M: [8, 16, 32, 48, 96]       # PQ only (ignored for index_type: flat)
+        nbits: [4, 8]                # PQ only (ignored for index_type: flat)
+      flat: {}
+  - name: faiss_hnsw_index
+    db_type: faiss_hnsw
+    embedding_model: huggingface_all_mpnet_base_v2
+    embedding_dtype_bytes: 4
+    collection_name: my_hnsw_index
+    embedding_dim: 768
+    M: [16, 32, 48]                 # build-time graph params (ef_search is a search-time module knob).
+    ef_construction: [100, 200, 400]
+  - name: mpnet_base_chroma
+    db_type: chroma
+    client_type: persistent
+    embedding_model: huggingface_all_mpnet_base_v2
+    embedding_dtype_bytes: 4
+    collection_name: huggingface_all_mpnet_base_v2
+    path: ${PROJECT_DIR}/data/chroma
+  # corpus:                       # chunker search space (when sweeping chunking):
+  #   chunker: {chunk_size: [128, 512], component: [character, recursivecharacter]}
+  pipeline:
+    # Hybrid example: configs/rag_stack/hybrid_sequential.yaml.
+    # With system.performance_source: measured, put one semantic_retrieval /
+    # vectordb node, one lexical_retrieval / bm25 node, then one
+    # hybrid_retrieval / hybrid_rrf node in node_lines order. All three are
+    # required (not optional); each has its own independently swept top_k.
+    # hybrid_rrf.weight is a positive RRF rank constant (default 60), not a
+    # dense/lexical mixture weight. ReAct and hybrid_cc are unsupported.
+    # BM25 has no analytical model, and the hybrid join has no CM scheduling
+    # binding: cost_model rejects both missing capabilities explicitly.
+    node_lines:
+    - node_line_name: retrieve_node_line
+      nodes:
+      - stage: semantic_retrieval
+        strategy:
+          metrics: [retrieval_f1, retrieval_recall, retrieval_precision]
+        top_k: [4, 8, 16]
+        modules:
+        - component: vectordb
+          vectordb: faiss_ivf_index
+          nprobe: [8, 16, 32, 64]
+    - node_line_name: post_retrieve_node_line
+      nodes:
+      - stage: passage_reranker
+        optional: true            # optimizer gets an enable/disable dim for optional nodes.
+        strategy:
+          metrics: [retrieval_f1, retrieval_recall, retrieval_precision]
+          speed_threshold: 10
+        top_k: [2, 4, 8]
+        modules:
+        - {component: sentence_transformer_reranker, model_name: cross-encoder/ms-marco-MiniLM-L-2-v2, max_length: 128}
+        - component: flag_embedding_reranker
+        - component: flag_embedding_llm_reranker
+        - component: time_reranker
+      - stage: prompt_maker
+        modules:
+        - component: fstring
+          prompt: "Read the passages and answer the given question. \n Question: {query} \n Passage: {retrieved_contents} \n Answer : "
+      - stage: generator
+        strategy:
+          metrics: [bleu, meteor, rouge]
+        system:
+          max_batch_size: {prefill: 16, decode: 256}
+        modules:
+        - component: vllm
+          model: [Qwen/Qwen2.5-3B-Instruct, Qwen/Qwen2.5-7B-Instruct]
+          # Global generation contract: defaults to true; raw completions are unsupported.
+          use_chat_template: true
+          temperature: {range: [0.1, 1.0]}

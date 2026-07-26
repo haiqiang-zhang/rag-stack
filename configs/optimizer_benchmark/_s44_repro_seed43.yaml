@@ -1,0 +1,30 @@
+defaults:
+  gt_budget: 50
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/s44_repro_seed43
+  seeds:
+  - 43
+  auto_analyze: false
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: s44_surrogate
+  params:
+    yaml_path: configs/optimizer_benchmark/_surrogate_s44_space.yaml
+    historical_eval_dirs:
+    - benchmarks/surrogate_s44/agent
+    - benchmarks/surrogate_s44/ax
+    - benchmarks/surrogate_s44/greedy
+    sub_metrics:
+    - deepeval_answer_correctness
+    - retrieval_token_recall
+    - retrieval_token_precision
+optimizers:
+- type: ax_qnehvi_mixedgp
+  name: ax_golden
+  params:
+    n_both_init: 10
+- type: agent_qnehvi
+  name: agent_current
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash

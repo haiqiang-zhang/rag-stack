@@ -1,0 +1,100 @@
+# System-transfer target frozen from ipp1-2031 for the SGS 8x A100 80GB PCIe host.
+#
+# The physical fields below are copied from
+# origin/calibrate/a100x8-dragonball-20260711T231917Z.  Unlike a calibration-only
+# hardware description, this dedicated transfer target is ready for the
+# system-transfer API: RAG-CM owns the deployment space and re-sweeps it on the
+# target hardware.  There is intentionally no `system_design_space`; that block
+# is only for optimizer-owned measured/joint deployment search.
+#
+# The CPU is defined inline because EPYC 7742 is not a built-in CPU preset.
+# `hardware_key` is the stable key used for frozen calibration data and the
+# generated IVF/HNSW profiles. CPU bandwidths use bytes/s; interconnect
+# bandwidths use decimal GB/s and latencies use microseconds. DRAM and cache
+# bandwidths are standalone measurements recorded in the target benchmark run.
+# L1D is omitted because its one-thread STREAM result was below timer resolution.
+system_transfer:
+  # Default Phase 2b budget for this target. API callers may override it
+  # explicitly; this metadata is recorded separately and is never copied into
+  # the target project's six-section RAG config.
+  n_refine_iterations: 20
+  # Run Phase 2b generation through in-process vllm.LLM.chat(). This is an
+  # orchestration choice, not part of the target physical-system spec.
+  generator_backend: vllm
+system:
+  # Stable identity for the exact A100x8 + dual-EPYC 7742 physical system.
+  # The A100 calibration campaign is incomplete, so use exact profiles when
+  # present and the declared physical specification when an exact component
+  # profile is genuinely absent. Malformed or identity-mismatched evidence
+  # still fails.
+  system_hardware: sgs_a100x8_epyc7742
+  rag_cm:
+    calibration_mode: uncalibrated_spec
+  performance_source: cost_model
+  system_space_owner: cost_model
+  gpu: A100_80GB_GPU
+  cpu:
+    hardware_key: epyc_7742_2s
+    num_cores: 128
+    # 128 cores x 3.4 GHz max boost x 32 FP32 FLOP/cycle (2x AVX2 FMA).
+    peak_flops: 1.39264e13
+    peak_int_ops: 6.9632e12
+    # 128-core parallel-first-touch and one-core local-NUMA STREAM medians.
+    mem_bandwidth: 227400300000
+    mem_bandwidth_1t: 21993800000
+    memory_tiers:
+      # Aggregate caps are five-run medians from exactly pinned, first-touch,
+      # one-worker-per-physical-core triads. One-thread values are raw STREAM.
+      - {name: L2, bandwidth: 6887002665021, bandwidth_1t: 103079200000, capacity: 524288}
+      # One 16 MiB L3 instance is shared by four physical cores (32 instances).
+      - {name: L3, bandwidth: 3159966930492, bandwidth_1t: 63586200000, capacity: 16777216}
+      - {name: ddr, bandwidth: 227400300000, bandwidth_1t: 21993800000, capacity: 1081962737664}
+    topology: {type: numa, sockets: 2, cores_per_socket: 64}
+  available_gpus: ["cuda:0", "cuda:1", "cuda:2", "cuda:3", "cuda:4", "cuda:5", "cuda:6", "cuda:7"]
+  interconnect:
+    # The audited CUDA runtime path is non-uniform by CPU socket. Keep the two
+    # four-GPU socket islands explicit; all unlisted pairs use cross-socket data.
+    gpu_gpu:
+      type: cuda_peer_runtime_hmm_same_socket
+      bandwidth_gbps: 0.680893523
+      latency_us: 49215.7641601565
+      fallback:
+        type: cuda_peer_runtime_hmm_cross_socket
+        bandwidth_gbps: 0.6808828765
+        latency_us: 49215.6201171875
+      links:
+        - devices: ["cuda:0", "cuda:1", "cuda:2", "cuda:3"]
+          type: cuda_peer_runtime_hmm_same_socket
+          bandwidth_gbps: 0.680893523
+          latency_us: 49215.7641601565
+        - devices: ["cuda:4", "cuda:5", "cuda:6", "cuda:7"]
+          type: cuda_peer_runtime_hmm_same_socket
+          bandwidth_gbps: 0.680893523
+          latency_us: 49215.7641601565
+    # Conservative direction-wide local-NUMA CUDA DMA: minimum one-way
+    # bandwidth and maximum measured one-way latency across all eight GPUs.
+    gpu_cpu:
+      type: pcie4_host_local_numa_cuda_dma
+      bandwidth_gbps: 24.622335179
+      latency_us: 2.482559979
+
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    # Derive query-time threads as min(request batch, physical cores), matching
+    # the source MSMARCO runs; IVF mode 0 is the calibrated runtime contract.
+    faiss_num_threads: null
+    faiss_ivf_parallel_mode: 0
+  cm_search_space:
+    # Re-sweep the complete one-host A100 deployment space. These bounds and
+    # runtime axes match the target branch's A100x8 calibration sweep contract.
+    placement_policy: [collocated, disaggregated]
+    min_num_gpus: 1
+    max_num_gpus: 8
+    max_num_gpus_per_stage: 8
+    gpus_per_server: 8
+    max_batch_size_request: 256
+    batch_size_decode: [1, 2, 4, 8, 16, 32, 64, 128, 256]
+    dynamic_batch_timeout_s: [0.002, 0.01, 0.05]
+    no_microbatching: true
+    allow_decode_collocation: true

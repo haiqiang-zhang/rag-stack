@@ -1,0 +1,364 @@
+# ============================================================================
+# sgs_h100x4_msmarco_greedy_forward_measured_s44.yaml
+# MEASURED RQ1 baseline on sysB (sgs 4xH100 NVL + EPYC 9124) over the MS MARCO
+# full-scale protocol: greedy forward (coordinate descent) searches the JOINT space =
+# the paper msmarco algo space (identical to configs/rag_stack/
+# paper_bench_msmarco_*_s4x: single fixed embedder, reduced index build knobs,
+# chunker PINNED 2048/character — MS MARCO passages ARE natural chunks) PLUS
+# the fully CURATED system space (identical to the dragonball measured
+# baselines' FINAL menu):
+#   system__deployment_preset (K=8): ride family (aux round-robin on the
+#     generator cards) + adaptive left family (aux on leftover cards, spare
+#     grows the generator in power-of-two steps). pd_2p1d_left was replaced by
+#     pd_1p2d_rr (NixlConnector cannot pull KV when prefill_tp > decode_tp and
+#     prefill_tp >= num_kv_heads — dead with the 1.5B/3B ladder models).
+#   system__batch_preset (6): curated (request, decode) operating points
+#     '<req>x<dec>', decode>=request: 16x32/16x64/16x256/64x256/128x128/128x256.
+# Performance AND quality are co-produced by ONE real closed-loop saturated
+# serving run (serving_runtime.py): continuous population across
+# warmup->measured, steady-state completion-delta qps under wall caps, quality
+# correctness-gated (all 100 QA rows get real results; LLM-judge overlaps the
+# measured phase). Quality memoization is disabled in measured mode.
+# Requires:
+#   * DEEPSEEK_API_KEY in .env (judge = DeepSeek API, off-GPU by nature —
+#     everything runs on this single box, so a local vLLM judge would contend
+#     with the measured serving; check balance before long runs, ~0.1 USD/trial).
+#   * OMP_NUM_THREADS exported (FAISS build/search threading on 8.84M vectors).
+#   * Shared immutable FAISS index cache (no per-project `path`): first build
+#     per (family x build-knob) combo over 8.84M vectors takes a while and is
+#     reused by every later trial/config.
+# ============================================================================
+global:
+  eval_backend: static_gt
+  n_iterations: 50
+dataset:
+  # MS MARCO full-scale protocol: the COMPLETE 8.84M-passage corpus (Tevatron
+  # msmarco-passage-corpus) searched end-to-end, quality scored on a 100-query
+  # seed-fixed sample of the v2.1 dev answerable set (qa_test). qa carries
+  # `references` = the annotator-selected GOLD passages (is_selected==1), so
+  # retrieval_token_* metrics score against real retrieval GT text.
+  dataset_name: msmarco_full
+  qa: datasets/msmarco_full/qa_test.parquet
+  corpus: datasets/msmarco_full/corpus.parquet
+system:
+  performance_source: measured
+  cpu: epyc_9124
+  gpu: H100_GPU
+  interconnect:
+    gpu_gpu:
+      type: h100_nvl_2pair
+      bandwidth_gbps: 300
+      latency_us: 0.4
+      fallback:
+        type: pcie5_pxb
+        bandwidth_gbps: 54
+        latency_us: 1.0
+      links:
+      - devices:
+        - cuda:0
+        - cuda:1
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+      - devices:
+        - cuda:2
+        - cuda:3
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+    gpu_cpu:
+      type: pcie5_host
+      bandwidth_gbps: 54
+      latency_us: 0.8
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    faiss_num_threads:           # explicit DERIVE: min(batch, physical cores) —
+                                 # the single policy shared by CM and measured
+    faiss_ivf_parallel_mode: 0   # scalar PIN (inter-query)
+  cm_search_space:
+    placement_policy:
+    - collocated
+    - disaggregated
+    min_num_gpus: 1
+    max_num_gpus: 4
+    max_num_gpus_per_stage: 4
+    gpus_per_server: 4
+    max_batch_size_request: 256
+    no_microbatching: true
+  system_design_space:
+    deployment_preset:
+    - tp4_rr
+    - tp2_pp2_rr
+    - pd_2p2d_rr
+    - tp1_left
+    - pd_1p1d_left
+    - pd_1p2d_rr
+    - pd_1p2d_left
+    - tp2_left
+    batch_preset:
+    - 16x32
+    - 16x64
+    - 16x256
+    - 64x256
+    - 128x128
+    - 128x256
+    vllm_kv_cache_dtype: auto
+    available_gpus:
+    - cuda:0
+    - cuda:1
+    - cuda:2
+    - cuda:3
+  system_space_owner: optimizer
+  deployment_presets:
+    tp4_rr:
+      placement: collocated
+      num_gpus:
+        generator: 4
+    tp2_pp2_rr:
+      placement: collocated
+      num_gpus:
+        generator: 4
+      pipeline_parallel:
+        generator: 2
+    pd_2p2d_rr:
+      placement: pd_disagg
+      num_gpus:
+        generator_prefill: 2
+        generator_decode: 2
+    tp1_left:
+      placement: collocated
+      aux: left
+      num_gpus:
+        generator: 1
+    pd_1p1d_left:
+      placement: pd_disagg
+      aux: left
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 1
+    pd_1p2d_rr:
+      placement: pd_disagg
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 2
+    pd_1p2d_left:
+      placement: pd_disagg
+      aux: left
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 2
+    tp2_left:
+      placement: collocated
+      aux: left
+      num_gpus:
+        generator: 2
+optimizer:
+  type: greedy
+  params:
+    seed: 44
+    search_mode: forward
+    beam_width: 3
+    stage_weight: log
+eval_backend_setting:
+  # Quality scalar = combined_quality = JUST deepeval_answer_correctness (the
+  # 5 auxiliary judge metrics would be ~6x the judge cost with zero effect on
+  # the search or the Pareto). Free token-overlap retrieval metrics kept.
+  combined_quality:
+    mode: mean
+    metrics:
+    - deepeval_answer_correctness
+  metrics:
+  - metric_name: deepeval_answer_correctness
+    model: openai/deepseek/deepseek-v4-flash
+    description: GEval-based factual correctness — LLM-judge compares generated answer (actual_output) to gold answer (generation_gt). Score in [0,1]. THE business target. DeepSeek API judge (off-GPU — the judge overlaps the measured phase on this single box). NOTE — quality axes are only comparable across runs scored by the SAME judge; re-score any run that used a different judge before comparing.
+  - metric_name: retrieval_token_recall
+    description: Token-overlap recall of the retrieval-GT text (references when present, else the answer) against the retrieved chunk text (pre-reranker) — chunker-invariant (matches TEXT, not chunk IDs).
+  - metric_name: retrieval_token_precision
+    description: Token-overlap precision — fraction of the retrieved chunk text that matches the retrieval-GT text (references/answer); chunker-invariant, pairs with retrieval_token_recall.
+algo_search_space:
+  vectordb:
+  # Index FAMILY is a search dimension; ONE fixed embedder (768-dim, DERIVED)
+  # for both families — index-build over 8.84M vectors is too slow to sweep 3.
+  - name: faiss_ivf_index
+    db_type: faiss_ivf
+    embedding_model: huggingface_all_mpnet_base_v2
+    collection_name: my_index
+    # embedding_dim is DERIVED from embedding_model (EMBEDDING_MODEL_DIMS) — do not set.
+    nlist_factor:
+    - 1
+    - 4
+    index_type:                            # search dim: IVF-PQ vs IVF-Flat
+      pq:
+        dsub:                              # search dim: target sub-vector dim (=D/M). M is DERIVED
+        - 4
+        - 32
+        nbits:
+        - 4
+        - 8
+      flat: {}
+  - name: faiss_hnsw_index
+    db_type: faiss_hnsw
+    embedding_model: huggingface_all_mpnet_base_v2
+    collection_name: my_hnsw_index
+    # embedding_dim is DERIVED from embedding_model (EMBEDDING_MODEL_DIMS) — do not set.
+    M:                            # HNSW build-time: graph degree (search dim)
+    - 16
+    - 48
+    ef_construction:              # HNSW build-time: candidate breadth (search dim)
+    - 100
+    - 400
+  corpus:
+    # msmarco_full: chunker PINNED (scalars = fixed values, NOT search dims) —
+    # MS MARCO passages ARE natural retrieval chunks (p50 322 / p99.9 944
+    # chars; 0.009% exceed 2048), so 2048/character is a 1:1 passthrough and
+    # the vector count stays == the 8.84M corpus rows.
+    chunker:
+      chunk_size: 2048
+      component: character
+  pipeline:
+    # Dataflow knob: `rag_dataflow` picks sequential vs react per trial; under
+    # react the sequential-only stages (query_expansion / passage_compressor /
+    # prompt_maker) are gated OFF and stripped; the reranker head stays
+    # searchable in BOTH modes. Same gating for every optimizer family.
+    rag_dataflow:
+    - sequential
+    - react:                     # react sub-config — knobs active only when react is chosen
+        max_iter:
+        - 3
+        - 5
+        - 10
+        - 15
+    node_lines:
+    - node_line_name: pre_retrieve_node_line
+      nodes:
+      - stage: query_expansion
+        optional: true
+        modules:
+        - component: query_decompose
+          generator_backend: vllm
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: hyde
+          generator_backend: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: multi_query_expansion
+          generator_backend: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+    - node_line_name: retrieve_node_line
+      nodes:
+      - stage: semantic_retrieval
+        modules:
+        - component: vectordb
+          vectordb:                # SEARCH DIM: index family — per-family query-time knobs nest under their family
+            faiss_ivf_index:
+              nprobe:
+              - 8
+              - 16
+              - 32
+              - 64
+            faiss_hnsw_index:
+              ef_search:
+              - 32
+              - 64
+              - 128
+              - 256
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_reranker    # searchable in BOTH modes (react reranks each round)
+        optional: true
+        modules:
+        - component: tart
+          bits: f32
+        - component: monot5
+          bits: f32
+        - component: colbert_reranker
+          bits: f32
+        - component: sentence_transformer_reranker
+          bits: f32
+        - component: flag_embedding_reranker
+          bits: f32
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_compressor  # sequential-only (gated off + stripped under react)
+        optional: true
+        modules:
+        - component: llmlingua2
+          rate:
+          - 0.3
+          - 0.5
+          - 0.7
+    - node_line_name: post_retrieve_node_line
+      nodes:
+      - stage: prompt_maker        # sequential-only (react builds its own agentic prompt)
+        modules:
+        - component: fstring
+          prompt: "Read the passages and answer the given question.\n Question: {query}\n Passage: {retrieved_contents}\n Answer :"
+        - component: long_context_reorder
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+        - component: window_replacement
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+      - stage: generator
+        modules:
+        - component: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          max_tokens: 512
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0

@@ -1,0 +1,10 @@
+name: rag-stack
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pytorch::faiss-cpu=1.14.1   # pinned: FAISS calibration profiles are version-specific (fastscan QBS / scan-kernel behavior)
+  - mkl=2025.3.1   # FAISS 1.14.1 links against libmkl_*.so.2; MKL 2026 ships .so.3
+  - pyrfr          # pre-built binary; pyrfr fails to compile with clang>=19
+  - h5py           # ann-benchmarks HDF5 datasets (deep1m) in the IVF CM benchmark

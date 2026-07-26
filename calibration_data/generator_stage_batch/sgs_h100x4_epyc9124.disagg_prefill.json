@@ -1,0 +1,932 @@
+{
+  "batches": {
+    "1": {
+      "engine_max_num_seqs": 1,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.029275175249495078,
+          "role_window_s": 0.11710070099798031,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:4:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:5:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:6:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:7:e24f7ec2b606e5aa"
+            }
+          ],
+          "window_completed_monotonic_s": 160970.867690972,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160970.750590271
+        },
+        {
+          "observed_service_per_cycle_s": 0.03031593949708622,
+          "role_window_s": 0.12126375798834488,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:8:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:9:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:10:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:11:e24f7ec2b606e5aa"
+            }
+          ],
+          "window_completed_monotonic_s": 160971.373061192,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160971.251797434
+        },
+        {
+          "observed_service_per_cycle_s": 0.028928963001817465,
+          "role_window_s": 0.11571585200726986,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:12:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:13:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:14:e24f7ec2b606e5aa"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 112,
+                "scheduled_sequences": 1,
+                "scheduled_tokens": 112,
+                "token_context_product": 12544
+              },
+              "cycle_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e:15:e24f7ec2b606e5aa"
+            }
+          ],
+          "window_completed_monotonic_s": 160971.885838174,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160971.770122322
+        }
+      ],
+      "target_batch": 1,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b1.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b1-c71339af23b84bc78d4349860b59f56e",
+      "telemetry_sha256": "a4a01e4f18c2c80ac1d8fc8145e2be908528a9c5edce536de4fa58e238d9e6fc",
+      "timing_run_id": "pd-prefill-timing-b1-7d6e5a1e39f04f2988117de9503e67e6"
+    },
+    "128": {
+      "engine_max_num_seqs": 128,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.4039506152475951,
+          "role_window_s": 1.6158024609903805,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:4:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:5:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:6:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:7:66cb518edcbdf155"
+            }
+          ],
+          "window_completed_monotonic_s": 160629.248835887,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160627.633033426
+        },
+        {
+          "observed_service_per_cycle_s": 0.36089543900015997,
+          "role_window_s": 1.4435817560006399,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:8:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:9:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:10:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:11:66cb518edcbdf155"
+            }
+          ],
+          "window_completed_monotonic_s": 160639.416948943,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160637.973367187
+        },
+        {
+          "observed_service_per_cycle_s": 0.38066164500196464,
+          "role_window_s": 1.5226465800078586,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:12:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:13:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:14:66cb518edcbdf155"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 14336,
+                "scheduled_sequences": 128,
+                "scheduled_tokens": 14336,
+                "token_context_product": 1605632
+              },
+              "cycle_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97:15:66cb518edcbdf155"
+            }
+          ],
+          "window_completed_monotonic_s": 160647.84449859,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160646.32185201
+        }
+      ],
+      "target_batch": 128,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b128.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b128-8b7441cf6db34cd3b9130aea37bb6c97",
+      "telemetry_sha256": "671f49baf5d94ba979c9c37d41c213e7b280e2d02203f81c59d95477ff5c5aec",
+      "timing_run_id": "pd-prefill-timing-b128-19cbbf8e3ba74d0597048bc7a2effce6"
+    },
+    "256": {
+      "engine_max_num_seqs": 256,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.959704995751963,
+          "role_window_s": 3.838819983007852,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:4:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:5:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:6:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:7:7c32c0db510f1b99"
+            }
+          ],
+          "window_completed_monotonic_s": 160478.987023266,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160475.148203283
+        },
+        {
+          "observed_service_per_cycle_s": 1.013461301998177,
+          "role_window_s": 4.053845207992708,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:8:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:9:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:10:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:11:7c32c0db510f1b99"
+            }
+          ],
+          "window_completed_monotonic_s": 160496.163275411,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160492.109430203
+        },
+        {
+          "observed_service_per_cycle_s": 0.7669420499951229,
+          "role_window_s": 3.0677681999804918,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:12:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:13:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:14:7c32c0db510f1b99"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 28672,
+                "scheduled_sequences": 256,
+                "scheduled_tokens": 28672,
+                "token_context_product": 3211264
+              },
+              "cycle_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1:15:7c32c0db510f1b99"
+            }
+          ],
+          "window_completed_monotonic_s": 160512.316841609,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160509.249073409
+        }
+      ],
+      "target_batch": 256,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b256.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b256-1ef2a7bbf8414e4885674e648ac014b1",
+      "telemetry_sha256": "db1ed9a629b94846cee5c1033e5c2029bc557cab8ff1e0fb52eaea414691042e",
+      "timing_run_id": "pd-prefill-timing-b256-239586c9c00a4cdfbebce4f96bf9ab0d"
+    },
+    "32": {
+      "engine_max_num_seqs": 32,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.13088572649576236,
+          "role_window_s": 0.5235429059830494,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:4:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:5:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:6:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:7:8a9e99883f01dc33"
+            }
+          ],
+          "window_completed_monotonic_s": 160827.84437679,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160827.320833884
+        },
+        {
+          "observed_service_per_cycle_s": 0.13834089250303805,
+          "role_window_s": 0.5533635700121522,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:8:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:9:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:10:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:11:8a9e99883f01dc33"
+            }
+          ],
+          "window_completed_monotonic_s": 160830.672661421,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160830.119297851
+        },
+        {
+          "observed_service_per_cycle_s": 0.13140749224839965,
+          "role_window_s": 0.5256299689935986,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:12:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:13:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:14:8a9e99883f01dc33"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 3584,
+                "scheduled_sequences": 32,
+                "scheduled_tokens": 3584,
+                "token_context_product": 401408
+              },
+              "cycle_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391:15:8a9e99883f01dc33"
+            }
+          ],
+          "window_completed_monotonic_s": 160833.65858909,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160833.132959121
+        }
+      ],
+      "target_batch": 32,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b32.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b32-3d40e298c91b48f9a4abba0b8561c391",
+      "telemetry_sha256": "296ce97276daf1f296090cbae748addc330ae7b2e77df29c579f60ffb239cb24",
+      "timing_run_id": "pd-prefill-timing-b32-d5ceb386387b40e78884120c7373b9ab"
+    },
+    "64": {
+      "engine_max_num_seqs": 64,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.2635133042494999,
+          "role_window_s": 1.0540532169979997,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:4:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:5:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:6:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:7:8ebc821d63d67cf8"
+            }
+          ],
+          "window_completed_monotonic_s": 160738.621923946,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160737.567870729
+        },
+        {
+          "observed_service_per_cycle_s": 0.25983538100263104,
+          "role_window_s": 1.0393415240105242,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:8:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:9:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:10:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:11:8ebc821d63d67cf8"
+            }
+          ],
+          "window_completed_monotonic_s": 160744.101992448,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160743.062650924
+        },
+        {
+          "observed_service_per_cycle_s": 0.26439211474644253,
+          "role_window_s": 1.0575684589857701,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:12:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:13:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:14:8ebc821d63d67cf8"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 7168,
+                "scheduled_sequences": 64,
+                "scheduled_tokens": 7168,
+                "token_context_product": 802816
+              },
+              "cycle_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77:15:8ebc821d63d67cf8"
+            }
+          ],
+          "window_completed_monotonic_s": 160750.146710559,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160749.0891421
+        }
+      ],
+      "target_batch": 64,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b64.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b64-1147130332f54ad48f1c433f8978fd77",
+      "telemetry_sha256": "d1bb94406bd5051271814d4a04c90659e44d6dae64a395bca1ed3f1d6baaa3b7",
+      "timing_run_id": "pd-prefill-timing-b64-e89d8db1414d48c5a7c31971a5833320"
+    },
+    "8": {
+      "engine_max_num_seqs": 8,
+      "samples": [
+        {
+          "observed_service_per_cycle_s": 0.03879064974898938,
+          "role_window_s": 0.15516259899595752,
+          "sample_index": 0,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:4:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:5:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:6:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:7:c453f051e8c50ecf"
+            }
+          ],
+          "window_completed_monotonic_s": 160903.988854164,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160903.833691565
+        },
+        {
+          "observed_service_per_cycle_s": 0.04080710875132354,
+          "role_window_s": 0.16322843500529416,
+          "sample_index": 1,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:8:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:9:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:10:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:11:c453f051e8c50ecf"
+            }
+          ],
+          "window_completed_monotonic_s": 160904.989989111,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160904.826760676
+        },
+        {
+          "observed_service_per_cycle_s": 0.0388073197536869,
+          "role_window_s": 0.1552292790147476,
+          "sample_index": 2,
+          "scheduler_cycle_count": 4,
+          "selected_cycles": [
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:12:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:13:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:14:c453f051e8c50ecf"
+            },
+            {
+              "actual_shape": {
+                "scheduled_context_tokens": 896,
+                "scheduled_sequences": 8,
+                "scheduled_tokens": 896,
+                "token_context_product": 100352
+              },
+              "cycle_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f:15:c453f051e8c50ecf"
+            }
+          ],
+          "window_completed_monotonic_s": 160905.925185322,
+          "window_proof": {},
+          "window_source": "parent_resume_to_all_completion_four_exact_cycles",
+          "window_started_monotonic_s": 160905.769956043
+        }
+      ],
+      "target_batch": 8,
+      "telemetry_path": "/pub/nfs-data/zhaiqiang/rag-stack-stage-component-refactor/calibration_data/generator_stage_batch/sgs_h100x4_epyc9124.disagg_prefill.b8.044c7e4fb39443dc90582687ec5b2977.telemetry.jsonl",
+      "telemetry_run_id": "pd-prefill-b8-d7037022fe5c453c8812856b35f6959f",
+      "telemetry_sha256": "b6df765657ca5a1cdd79366cf2c21b590800c0b2d3c1e0b81d6ec028bdd4d130",
+      "timing_run_id": "pd-prefill-timing-b8-f19f3a04c43a49b8808cbf426b3c7cae"
+    }
+  },
+  "role": "prefill",
+  "schema": "rag_stack.v1.direct_disagg_role_timing",
+  "schema_version": 1,
+  "system_hardware": "sgs_h100x4_epyc9124"
+}

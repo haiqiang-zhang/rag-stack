@@ -1,0 +1,100 @@
+site_name: RAG-Stack Documentation
+site_description: User guides and technical documentation for RAG-Stack.
+site_url: https://haiqiang-zhang.github.io/rag-stack/
+repo_url: https://github.com/haiqiang-zhang/rag-stack
+repo_name: haiqiang-zhang/rag-stack
+edit_uri: edit/main/docs/
+
+docs_dir: .
+site_dir: ../site
+use_directory_urls: false
+
+exclude_docs: |
+  /_config.yml
+  /mkdocs.yml
+
+theme:
+  name: material
+  language: en
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search:
+      lang: en
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: README.md
+  - User Guide: user_guide.md
+  - Evaluator Setup and Migration: evaluators.md
+  - Evaluator Extension Guide: evaluator_extensibility.md
+  - Evaluator API Reference: evaluator_api.md
+  - Project CM Preview: cm_preview.md
+  - FlashRAG Integration: flashrag.md
+  - Replay a Configuration: replay.md
+  - Evaluate One Saved Config: eval_one.md
+  - Experimental Functions: experimental_functions.md
+  - Config Schema: config_schema.md
+  - Sequential Hybrid Retrieval: hybrid_retrieval.md
+  - Cost Model (RAG-CM):
+      - Overview: rag_cm/README.md
+      - Architecture and Workload Representation: rag_cm/architecture.md
+      - Compiled Path Contract: rag_cm/compiled_plan.md
+      - Calibration and Hardware Migration: rag_cm/calibration.md
+      - FAISS IVF Cost Model: rag_cm/faiss_ivf_cost_model.md
+  - Optimizer Benchmark: optimizer.md
+  - Web App: apps.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/haiqiang-zhang/rag-stack
+      name: RAG-Stack on GitHub
+
+copyright: Copyright &copy; RAG-Stack contributors

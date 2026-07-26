@@ -1,0 +1,21 @@
+strategy: synthetic_article
+
+schema_dir: rageval_schema
+output_dir: tmp_outputs/synthetic_article
+
+domain: medical
+lang: en
+json_idx: 0
+
+num_multi_doc: 1
+num_irrelevant: 60
+
+model_name: openai/gpt-4.1-2025-04-14
+
+chunk_module_name: langchain_chunk
+chunk_params:
+  chunk_method: recursivecharacter
+  chunk_size: 512
+  chunk_overlap: 50
+
+random_seed: 42

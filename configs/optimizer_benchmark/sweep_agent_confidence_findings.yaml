@@ -1,0 +1,45 @@
+# Baseline (ax_qnehvi_mixedgp) vs the main LLM-agent optimizer (agent_qnehvi,
+# ① inject-only + MO-aware) on the real-data historical surrogate (~195 rows),
+# 50 GT evals × 3 seeds each. This run validates the new agent-prompt signals:
+#   - MODEL CONFIDENCE line (quality-GP leave-one-out CV reliability)
+#   - DATA-DRIVEN FINDINGS card (per-knob quality sensitivity + support counts)
+#   - sub-metrics now on BOTH recent evals AND the Pareto frontier
+# The prompt changes live in the agent code, so any agent_qnehvi run uses them.
+#
+#   python -m rag_stack benchmark --config configs/optimizer_benchmark/sweep_agent_confidence_findings.yaml
+#
+# Metric = absolute normalized hypervolume (PERF_MAX=10000, Q_MAX=1.0, ref (0,0)),
+# the same HV the e2e run reports (no hv_diff / NSGA-II true-Pareto).
+
+defaults:
+  gt_budget: 50
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/agent_confidence_findings
+  seeds: [42, 43, 44]
+  auto_analyze: false
+
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: rag_historical_surrogate
+  params:
+    yaml_path: configs/rag_stack/sgs_h100_ax_correctness.yaml
+    sub_metrics:
+    - deepeval_answer_correctness
+    - deepeval_answer_relevancy
+    - deepeval_context_recall
+    - deepeval_context_precision
+    - retrieval_recall
+
+optimizers:
+# golden baseline — BoTorch-native mixed-kernel qNEHVI
+- type: ax_qnehvi_mixedgp
+  name: ax_mixedgp_golden
+  params:
+    n_both_init: 10
+
+# main optimizer — ① inject-only, MO-aware agent (new confidence + findings prompt)
+- type: agent_qnehvi
+  name: agent_mo_inject
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash

@@ -1,0 +1,356 @@
+# ============================================================================
+# sgs_h100x4_dragonball_mixedgp_measured_s43.yaml
+# MEASURED RQ1 baseline on sysB (sgs 4xH100 NVL + EPYC 9124): ax_qnehvi_mixedgp searches
+# the JOINT space = the paper dragonball algo space (identical to
+# configs/rag_stack/paper_bench_*_s4x) PLUS a fully CURATED system space:
+#   system__deployment_preset (K=8): ride family (aux round-robin on the
+#     generator cards) + adaptive left family (aux on leftover cards, spare
+#     grows the generator in power-of-two steps).
+#   system__batch_preset (6): curated (request, decode) operating points
+#     '<req>x<dec>', all with decode>=request. ONE categorical pins both
+#     batches — the fair curated analog of deployment_preset for batching,
+#     avoiding the redundant/no-op combos an independent request x decode
+#     cartesian dim produces (dec<req floors to a no-op; dec>>req rarely
+#     fills). Menu: 16x32/16x64/16x256/64x256/128x128/128x256. (256x256 swapped out 07-06: its 256-admission corner is dominated — the fat-decode operating point is covered by 128x256.)
+# Performance AND quality are co-produced by ONE real closed-loop saturated
+# serving run (serving_runtime.py); the LLM-judge scoring overlaps the
+# measured phase. Quality memoization is disabled in measured mode.
+# Hardware block declares the current SGS H100 NVL 2-pair topology.
+# Requires: DEEPSEEK_API_KEY (judge), OMP_NUM_THREADS exported (faiss build).
+# ============================================================================
+global:
+  eval_backend: static_gt
+  n_iterations: 50
+dataset:
+  dataset_name: dragonball_en
+  qa: datasets/dragonball/qa_en_sample_100.parquet
+  corpus: datasets/dragonball/raw_corpus_en.parquet
+system:
+  performance_source: measured
+  cpu: epyc_9124
+  gpu: H100_GPU
+  interconnect:
+    gpu_gpu:
+      type: h100_nvl_2pair
+      bandwidth_gbps: 300
+      latency_us: 0.4
+      fallback:
+        type: pcie5_pxb
+        bandwidth_gbps: 54
+        latency_us: 1.0
+      links:
+      - devices:
+        - cuda:0
+        - cuda:1
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+      - devices:
+        - cuda:2
+        - cuda:3
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+    gpu_cpu:
+      type: pcie5_host
+      bandwidth_gbps: 54
+      latency_us: 0.8
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    faiss_ivf_parallel_mode: 0
+  cm_search_space:
+    placement_policy:
+    - collocated
+    - disaggregated
+    min_num_gpus: 1
+    max_num_gpus: 4
+    max_num_gpus_per_stage: 4
+    gpus_per_server: 4
+    max_batch_size_request: 256
+    no_microbatching: true
+  system_design_space:
+    deployment_preset:
+    - tp4_rr
+    - tp2_pp2_rr
+    - pd_2p2d_rr
+    - tp1_left
+    - pd_1p1d_left
+    - pd_1p2d_rr
+    - pd_1p2d_left
+    - tp2_left
+    batch_preset:
+    - 16x32
+    - 16x64
+    - 16x256
+    - 64x256
+    - 128x128
+    - 128x256
+    vllm_kv_cache_dtype: auto
+    available_gpus:
+    - cuda:0
+    - cuda:1
+    - cuda:2
+    - cuda:3
+  system_space_owner: optimizer
+  deployment_presets:
+    tp4_rr:
+      placement: collocated
+      num_gpus:
+        generator: 4
+    tp2_pp2_rr:
+      placement: collocated
+      num_gpus:
+        generator: 4
+      pipeline_parallel:
+        generator: 2
+    pd_2p2d_rr:
+      placement: pd_disagg
+      num_gpus:
+        generator_prefill: 2
+        generator_decode: 2
+    tp1_left:
+      placement: collocated
+      aux: left
+      num_gpus:
+        generator: 1
+    pd_1p1d_left:
+      placement: pd_disagg
+      aux: left
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 1
+    pd_1p2d_rr:
+      placement: pd_disagg
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 2
+    pd_1p2d_left:
+      placement: pd_disagg
+      aux: left
+      num_gpus:
+        generator_prefill: 1
+        generator_decode: 2
+    tp2_left:
+      placement: collocated
+      aux: left
+      num_gpus:
+        generator: 2
+optimizer:
+  type: ax_qnehvi_mixedgp
+  params:
+    seed: 43
+    n_both_init: 10
+    num_restarts: 20
+    raw_samples: 1024
+eval_backend_setting:
+  combined_quality:
+    mode: mean
+    metrics:
+    - deepeval_answer_correctness
+  metrics:
+  - metric_name: deepeval_answer_correctness
+    model: openai/deepseek/deepseek-v4-flash
+    description: GEval-based factual correctness — LLM-judge compares generated answer (actual_output)
+      to gold answer (generation_gt). Score ∈ [0,1]. THE business target.
+  - metric_name: retrieval_token_recall
+    description: Token-overlap recall of the retrieval-GT text (references when present, else the answer)
+      against the retrieved chunk text (pre-reranker) — chunker-invariant (matches TEXT, not chunk IDs).
+    description: Token-overlap precision — fraction of the retrieved chunk text that matches the retrieval-GT
+      text (references/answer); chunker-invariant, pairs with retrieval_token_recall.
+algo_search_space:
+  vectordb:
+  - name: faiss_ivf_index
+    db_type: faiss_ivf
+    embedding_model:
+    - huggingface_baai_bge_small
+    - huggingface_all_mpnet_base_v2
+    - huggingface_bge_m3
+    collection_name: my_index
+    path: ${PROJECT_DIR}/data/faiss
+    nlist_factor:
+    - 1
+    - 2
+    - 4
+    - 8
+    index_type:
+      pq:
+        dsub:
+        - 4
+        - 8
+        - 16
+        - 32
+        nbits:
+        - 4
+        - 8
+      flat: {}
+  - name: faiss_hnsw_index
+    db_type: faiss_hnsw
+    embedding_model:
+    - huggingface_baai_bge_small
+    - huggingface_all_mpnet_base_v2
+    - huggingface_bge_m3
+    collection_name: my_hnsw_index
+    path: ${PROJECT_DIR}/data/faiss
+    M:
+    - 16
+    - 32
+    - 48
+    ef_construction:
+    - 100
+    - 200
+    - 400
+  corpus:
+    chunker:
+      chunk_size:
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+      component:
+      - character
+      - recursivecharacter
+  pipeline:
+    rag_dataflow:
+    - sequential
+    - react:
+        max_iter:
+        - 3
+        - 5
+        - 10
+        - 15
+    node_lines:
+    - node_line_name: pre_retrieve_node_line
+      nodes:
+      - stage: query_expansion
+        optional: true
+        modules:
+        - component: query_decompose
+          generator_backend: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: hyde
+          generator_backend: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: multi_query_expansion
+          generator_backend: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+    - node_line_name: retrieve_node_line
+      nodes:
+      - stage: semantic_retrieval
+        modules:
+        - component: vectordb
+          vectordb:
+            faiss_ivf_index:
+              nprobe:
+              - 8
+              - 16
+              - 32
+              - 64
+            faiss_hnsw_index:
+              ef_search:
+              - 32
+              - 64
+              - 128
+              - 256
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_reranker
+        optional: true
+        modules:
+        - component: tart
+          bits: f32
+        - component: monot5
+          bits: f32
+        - component: colbert_reranker
+          bits: f32
+        - component: sentence_transformer_reranker
+          bits: f32
+        - component: flag_embedding_reranker
+          bits: f32
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_compressor
+        optional: true
+        modules:
+        - component: llmlingua2
+          rate:
+          - 0.3
+          - 0.5
+          - 0.7
+    - node_line_name: post_retrieve_node_line
+      nodes:
+      - stage: prompt_maker
+        modules:
+        - component: fstring
+          prompt: "Read the passages and answer the given question.\n Question: {query}\n Passage: {retrieved_contents}\n\
+            \ Answer :"
+        - component: long_context_reorder
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+        - component: window_replacement
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+      - stage: generator
+        modules:
+        - component: vllm
+          model:
+            ordered:
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          max_tokens: 512
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0

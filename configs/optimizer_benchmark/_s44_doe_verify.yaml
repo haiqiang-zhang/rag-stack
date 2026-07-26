@@ -1,0 +1,33 @@
+defaults:
+  gt_budget: 28
+  checkpoint_interval: 10
+  output_dir: tmp_outputs/optimizer_benchmark_results/s44_doe_verify
+  seeds:
+  - 42
+  - 43
+  auto_analyze: false
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: s44_surrogate
+  params:
+    yaml_path: configs/optimizer_benchmark/_surrogate_s44_space.yaml
+    historical_eval_dirs:
+    - benchmarks/surrogate_s44/agent
+    - benchmarks/surrogate_s44/ax
+    - benchmarks/surrogate_s44/greedy
+    performance_mode: historical_surrogate
+    sub_metrics:
+    - deepeval_answer_correctness
+    - retrieval_token_recall
+    - retrieval_token_precision
+optimizers:
+- type: agent_qnehvi
+  name: doe_OFF
+  params:
+    n_both_init: 10
+    enable_doe: false
+- type: agent_qnehvi
+  name: doe_ON
+  params:
+    n_both_init: 10
+    enable_doe: true

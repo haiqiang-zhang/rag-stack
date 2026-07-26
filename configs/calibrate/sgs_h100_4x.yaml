@@ -1,0 +1,37 @@
+# Canonical calibration hardware for the current SGS 4×H100-NVL + 2×EPYC 9124
+# box. Keep this topology identical to the live rag-stack and measured configs.
+# `rag_stack calibrate` reads ONLY this `system` block.
+#   - gpu : preset key → GPU params from genz_llm/Systems/system_configs.py (H100_GPU)
+#   - cpu : preset key → CPU spec from CPU_SPECS (EPYC_9124) + committed faiss profile
+#   - available_gpus   → GPU count for the GPU-aware generator-tp case selection
+system:
+  # Stable identity for the formal H100x4 + dual-EPYC topology catalog.  This
+  # key, not a deployment/model/TP tuple, selects serving curves.
+  system_hardware: sgs_h100x4_epyc9124
+  # Calibration writes beneath the process-wide profile root
+  # (calibration_profiles by default). Profile stores are not YAML knobs.
+  performance_source: measured
+  gpu: H100_GPU
+  cpu: epyc_9124          # AMD EPYC 9124 (Zen 4 Genoa) — sgs box CPU
+  available_gpus: [cuda:0, cuda:1, cuda:2, cuda:3]
+  interconnect:
+    # Decimal GB/s in one payload direction. Each H100 NVL pair is 600 GB/s
+    # bidirectional = 300 GB/s per direction.
+    gpu_gpu:
+      type: h100_nvl_2pair
+      bandwidth_gbps: 300
+      latency_us: 0.4
+      fallback:
+        type: pcie5_pxb
+        bandwidth_gbps: 54
+        latency_us: 1.0
+      links:
+      - devices: [cuda:0, cuda:1]
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+      - devices: [cuda:2, cuda:3]
+        type: nvlink4
+        bandwidth_gbps: 300
+        latency_us: 0.4
+    gpu_cpu: {type: pcie5_host, bandwidth_gbps: 54, latency_us: 0.8}

@@ -1,0 +1,439 @@
+{
+  "_stage_batch_curves": {
+    "profiles": {
+      "generator": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.0026981890546267095,
+            "overhead_s": 0.0004407963050871329,
+            "reference_component_service_s": 0.0022573927495395767,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.002924607968679993,
+            "overhead_s": 0.0005696054671661841,
+            "reference_component_service_s": 0.002355002501513809,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.003436997265680475,
+            "overhead_s": 0.0009511652734454402,
+            "reference_component_service_s": 0.0024858319922350346,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.004140093249816346,
+            "overhead_s": 0.0013939659892002964,
+            "reference_component_service_s": 0.0027461272606160493,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.01106187942195902,
+            "overhead_s": 0.006029525664078392,
+            "reference_component_service_s": 0.005032353757880628,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "49d132f6aee522f156b35bde818ccb292c90224e5e275ee41a3de381c4556e48",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "generator",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.0003840738259441425,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.0025550787215488525,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.0060253142266901705,
+          "passed": true,
+          "predicted_overhead_s": 0.002939152547492995,
+          "predicted_total_service_s": 0.006409388052634313,
+          "reference_component_service_s": 0.003470235505141318,
+          "relative_error": 0.06374336864338478,
+          "sample_count": 3
+        }
+      },
+      "generator_decode": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.0036152100619801786,
+            "overhead_s": 0.0014546930516080464,
+            "reference_component_service_s": 0.0021605170103721322,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.003323780187201919,
+            "overhead_s": 0.0011245254316309002,
+            "reference_component_service_s": 0.002199254755571019,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.004640800687411684,
+            "overhead_s": 0.0023162792421499035,
+            "reference_component_service_s": 0.00232452144526178,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.005577713875027257,
+            "overhead_s": 0.003184816870882059,
+            "reference_component_service_s": 0.002392897004145198,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.009450062530959258,
+            "overhead_s": 0.005800443628340872,
+            "reference_component_service_s": 0.0036496189026183857,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "796d5a300cd2f1351d71dd83ab94a2b96cf93e744bc9d308970e2a9edef53adc",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "generator_decode",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.0016000269828388503,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.002456665473862813,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.005241830281192961,
+          "passed": true,
+          "predicted_overhead_s": 0.004056692456701663,
+          "predicted_total_service_s": 0.006841857264031811,
+          "reference_component_service_s": 0.0027851648073301477,
+          "relative_error": 0.30524204276119915,
+          "sample_count": 3
+        }
+      },
+      "generator_prefill": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.029275175249495078,
+            "overhead_s": 0.017431271678127816,
+            "reference_component_service_s": 0.011843903571367264,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.0388073197536869,
+            "overhead_s": 0.01966619964770507,
+            "reference_component_service_s": 0.01914112010598183,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.13140749224839965,
+            "overhead_s": 0.10837174731312553,
+            "reference_component_service_s": 0.023035744935274122,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.2635133042494999,
+            "overhead_s": 0.21928680694208014,
+            "reference_component_service_s": 0.04422649730741978,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.959704995751963,
+            "overhead_s": 0.7801518380945781,
+            "reference_component_service_s": 0.17955315765738486,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "f48f5d40bf82e9d8c73dda0008028cf0dbe80b8d92e2005a95f18eb3e3255d40",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "generator_prefill",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.11258702082346034,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.29365479650278575,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.38066164500196464,
+          "passed": true,
+          "predicted_overhead_s": 0.4062418173262461,
+          "predicted_total_service_s": 0.493248665825425,
+          "reference_component_service_s": 0.08700684849917889,
+          "relative_error": 0.29576665340916936,
+          "sample_count": 3
+        }
+      },
+      "query_expansion": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.0026981890546267095,
+            "overhead_s": 0.0004407963050871329,
+            "reference_component_service_s": 0.0022573927495395767,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.002924607968679993,
+            "overhead_s": 0.0005696054671661841,
+            "reference_component_service_s": 0.002355002501513809,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.003436997265680475,
+            "overhead_s": 0.0009511652734454402,
+            "reference_component_service_s": 0.0024858319922350346,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.004140093249816346,
+            "overhead_s": 0.0013939659892002964,
+            "reference_component_service_s": 0.0027461272606160493,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.01106187942195902,
+            "overhead_s": 0.006029525664078392,
+            "reference_component_service_s": 0.005032353757880628,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "8f3b51806634ae53a7fa4a4411d6fa31163224a65fb59d4990c3660faafb4fbc",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "query_expansion",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.0003840738259441425,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.0025550787215488525,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.0060253142266901705,
+          "passed": true,
+          "predicted_overhead_s": 0.002939152547492995,
+          "predicted_total_service_s": 0.006409388052634313,
+          "reference_component_service_s": 0.003470235505141318,
+          "relative_error": 0.06374336864338478,
+          "sample_count": 3
+        }
+      },
+      "query_expansion_decode": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.0036152100619801786,
+            "overhead_s": 0.0014546930516080464,
+            "reference_component_service_s": 0.0021605170103721322,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.003323780187201919,
+            "overhead_s": 0.0011245254316309002,
+            "reference_component_service_s": 0.002199254755571019,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.004640800687411684,
+            "overhead_s": 0.0023162792421499035,
+            "reference_component_service_s": 0.00232452144526178,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.005577713875027257,
+            "overhead_s": 0.003184816870882059,
+            "reference_component_service_s": 0.002392897004145198,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.009450062530959258,
+            "overhead_s": 0.005800443628340872,
+            "reference_component_service_s": 0.0036496189026183857,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "5aff0191e4dbe4ab3307da1d4236eafff864d615f57746a42eac4a558d35b6d8",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "query_expansion_decode",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.0016000269828388503,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.002456665473862813,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.005241830281192961,
+          "passed": true,
+          "predicted_overhead_s": 0.004056692456701663,
+          "predicted_total_service_s": 0.006841857264031811,
+          "reference_component_service_s": 0.0027851648073301477,
+          "relative_error": 0.30524204276119915,
+          "sample_count": 3
+        }
+      },
+      "query_expansion_prefill": {
+        "anchors": [
+          {
+            "batch_size": 1,
+            "engine_max_num_seqs": 1,
+            "observed_resident_batch": 1,
+            "observed_total_service_s": 0.029275175249495078,
+            "overhead_s": 0.017431271678127816,
+            "reference_component_service_s": 0.011843903571367264,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 8,
+            "engine_max_num_seqs": 8,
+            "observed_resident_batch": 8,
+            "observed_total_service_s": 0.0388073197536869,
+            "overhead_s": 0.01966619964770507,
+            "reference_component_service_s": 0.01914112010598183,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 32,
+            "engine_max_num_seqs": 32,
+            "observed_resident_batch": 32,
+            "observed_total_service_s": 0.13140749224839965,
+            "overhead_s": 0.10837174731312553,
+            "reference_component_service_s": 0.023035744935274122,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 64,
+            "engine_max_num_seqs": 64,
+            "observed_resident_batch": 64,
+            "observed_total_service_s": 0.2635133042494999,
+            "overhead_s": 0.21928680694208014,
+            "reference_component_service_s": 0.04422649730741978,
+            "sample_count": 3
+          },
+          {
+            "batch_size": 256,
+            "engine_max_num_seqs": 256,
+            "observed_resident_batch": 256,
+            "observed_total_service_s": 0.959704995751963,
+            "overhead_s": 0.7801518380945781,
+            "reference_component_service_s": 0.17955315765738486,
+            "sample_count": 3
+          }
+        ],
+        "batch_unit": "resident_sequences",
+        "content_sha256": "3f8b653a120ec3dc13eeb892eb86cf87dcd3aafa2012f5d0ce844a418db590a9",
+        "interpolation": "piecewise_linear_nonnegative_engine_cycle_overhead_in_resident_batch",
+        "key": {
+          "stage": "query_expansion_prefill",
+          "system_hardware": "sgs_h100x4_epyc9124"
+        },
+        "max_batch_size": 256,
+        "validation": {
+          "absolute_error_s": 0.11258702082346034,
+          "batch_size": 128,
+          "engine_max_num_seqs": 128,
+          "max_relative_error": 0.35,
+          "observed_overhead_s": 0.29365479650278575,
+          "observed_resident_batch": 128,
+          "observed_total_service_s": 0.38066164500196464,
+          "passed": true,
+          "predicted_overhead_s": 0.4062418173262461,
+          "predicted_total_service_s": 0.493248665825425,
+          "reference_component_service_s": 0.08700684849917889,
+          "relative_error": 0.29576665340916936,
+          "sample_count": 3
+        }
+      }
+    },
+    "system_hardware": "sgs_h100x4_epyc9124"
+  }
+}

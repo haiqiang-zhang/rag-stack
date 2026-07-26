@@ -1,0 +1,254 @@
+# _run_agent_s44.yaml — 6-section schema. Optimizer: agent_qnehvi (the main optimizer).
+# Mirrors configs/rag_stack/config_reference.yaml (fully annotated) and
+# _run_greedy_s44.yaml; only the `optimizer:` block differs across the _run_*_s44 set.
+global:
+  eval_backend: static_gt
+  rag_ir_mode: dynamic           # explicit (= default) — trace+workflow-schema replay (dynamic engine)
+  n_iterations: 50
+dataset:
+  dataset_name: dragonball_en
+  qa: datasets/dragonball/qa_en_sample_50.parquet
+  corpus: datasets/dragonball/raw_corpus_en.parquet
+system:
+  performance_source: cost_model   # explicit (= default) — unified with _run_greedy_s44
+  cpu:
+    num_cores: 32
+    peak_flops: 3.79e12
+    peak_int_ops: 1.89e12
+    mem_bandwidth: 308e9
+    mem_bandwidth_1t: 38e9
+    memory_tiers:
+    - name: l1d
+      bandwidth: 2000e9
+      bandwidth_1t: 207e9
+      capacity: 1048576
+    - name: l2
+      bandwidth: 1500e9
+      bandwidth_1t: 116e9
+      capacity: 33554432
+    - name: llc
+      bandwidth: 1000e9
+      bandwidth_1t: 67e9
+      capacity: 134217728
+    - name: ddr
+      bandwidth: 308e9
+      bandwidth_1t: 38e9
+      capacity: 384e9
+    topology:
+      type: numa
+      sockets: 2
+      cores_per_socket: 16
+  gpu: H100_GPU
+  # Declarative interconnect (SYSTEM-level; works with the string GPU preset).
+  # H100: NVLink4 GPU↔GPU, PCIe5 GPU↔host. See communication.explicit bw/latency.
+  interconnect:
+    gpu_gpu: {type: nvlink4, bandwidth_gbps: 450, latency_us: 0.4}
+    gpu_cpu: {type: pcie5_host, bandwidth_gbps: 54, latency_us: 0.8}
+  performance_objectives:
+    selection: max_throughput
+  retrieval:
+    faiss_num_threads: 1
+  cm_search_space:
+    placement_policy:
+    - disaggregated
+    - collocated
+    min_num_gpus: 4
+    max_num_gpus: 8
+    max_num_gpus_per_stage: 4
+    gpus_per_server: 8
+    max_batch_size_request: 256
+    no_microbatching: true
+    allow_decode_collocation: true
+optimizer:
+  type: agent_qnehvi
+  params:
+    seed: 44
+    n_both_init: 10
+    agent_model: deepseek-v4-flash
+    n_candidates: 256
+eval_backend_setting:
+  combined_quality:
+    mode: mean
+    metrics:
+    - deepeval_answer_correctness
+  metrics:
+  # Descriptions are written FOR THE AGENT (shown verbatim in its prompt). Each says
+  # what the metric captures + which stages TEND to drive it + the key couplings/
+  # trade-offs — as hints, NOT a fixed metric→knob mapping. The agent reasons from
+  # the actual evals about which knobs move them.
+  - metric_name: deepeval_answer_correctness
+    model: openai/deepseek/deepseek-v4-flash
+    description: GEval factual correctness of the generated answer vs the gold answer — THE optimized quality target, score in [0,1]. End-to-end — anything that changes the retrieved evidence OR the generation can move it, so read the sub-metrics below as a breakdown of where correctness is won or lost.
+  - metric_name: deepeval_faithfulness
+    model: openai/deepseek/deepseek-v4-flash
+    description: Is the answer grounded in the retrieved context — no claims that contradict or aren't supported by it (a hallucination check)? Mainly a generation-side signal (model, temperature, prompt), but a noisy or off-topic context makes grounding harder, so weak retrieval can pull it down too.
+  - metric_name: deepeval_answer_relevancy
+    model: openai/deepseek/deepseek-v4-flash
+    description: How well the answer actually addresses the question (on-topic-ness), independent of factual correctness. Driven mostly by the generator and prompt, but the generator only sees the retrieved context, so poor retrieval can still make a strong model answer off-target.
+  - metric_name: deepeval_context_precision
+    model: openai/deepseek/deepseek-v4-flash
+    description: Of the chunks fed to the generator, how many are genuinely relevant and are the relevant ones ranked first? A retrieval-quality signal — chunking, index fidelity, top_k, reranking all move it — though query expansion upstream changes what gets retrieved. In direct tension with recall — grabbing more chunks usually lowers precision.
+  - metric_name: deepeval_context_recall
+    model: openai/deepseek/deepseek-v4-flash
+    description: Does the retrieved context actually contain the information needed to answer (coverage of the gold facts)? Retrieval-side — chunk size, index, top_k, reranker. Loosening retrieval (bigger top_k / chunks) raises recall but tends to cost precision and can bury the answer among distractors.
+  - metric_name: deepeval_contextual_relevancy
+    model: openai/deepseek/deepseek-v4-flash
+    description: Overall signal-to-noise of the whole retrieved context vs the question — penalizes irrelevant/distractor passages. Retrieval-side and in direct tension with recall (more context covers more but dilutes relevancy); reranking and compression are the usual levers to clean it up.
+  - metric_name: retrieval_token_recall
+    description: Token-overlap recall of the gold reference text within the retrieved chunks, measured BEFORE reranking — chunker-invariant (matches text, not chunk IDs). Reflects raw first-stage retrieval coverage (embedding model, index nlist/nprobe/M/nbits, top_k, chunking); it is a ceiling on what reranking and generation can use.
+  - metric_name: retrieval_token_precision
+    description: Token-overlap precision — the fraction of retrieved chunk text that is actually gold-reference text; pairs with token_recall as the precision side of the same trade-off. Large top_k or large chunks raise recall but lower this.
+algo_search_space:
+  vectordb:
+  - name: faiss_ivfpq_index           # name kept = data column prefix faiss_ivfpq_index__* + pipeline refs
+    db_type: faiss_ivf                 # current code (faiss_ivfpq db_type was deleted in the refactor)
+    index_type: pq                     # the s44 data is all IVF-PQ; FIXED (not a search dim) — data has no index_type column
+    embedding_model: huggingface_all_mpnet_base_v2
+    collection_name: my_index
+    embedding_dim: 768
+    nlist_factor:
+    - 1
+    - 2
+    - 4
+    - 8
+    M:
+    - 8
+    - 16
+    - 32
+    - 48
+    - 96
+    nbits:
+    - 4
+    - 8
+  corpus:
+    # The surrogate feeds the frozen CHUNKED corpus.parquet from the shared
+    # benchmarks data dir; chunk sweeps re-chunk from this RAW source.
+    raw_path: datasets/dragonball/raw_corpus_en.parquet
+    chunker:
+      chunk_size:
+      - 128
+      - 256
+      - 512
+      - 1024
+      - 2048
+      component:
+      - character
+      - recursivecharacter
+  pipeline:
+    node_lines:
+    - node_line_name: pre_retrieve_node_line
+      nodes:
+      - stage: query_expansion
+        optional: true
+        modules:
+        - component: query_decompose
+          generator_backend: vllm
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: hyde
+          generator_backend: vllm
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+        - component: multi_query_expansion
+          generator_backend: vllm
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0
+    - node_line_name: retrieve_node_line
+      nodes:
+      - stage: semantic_retrieval
+        modules:
+        - component: vectordb
+          vectordb: faiss_ivfpq_index
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_reranker
+        optional: true
+        modules:
+        - component: tart
+          bits: f32
+        - component: monot5
+          bits: f32
+        - component: colbert_reranker
+          bits: f32
+        - component: sentence_transformer_reranker
+          bits: f32
+        - component: flag_embedding_reranker
+          bits: f32
+        top_k:
+        - 1
+        - 2
+        - 4
+        - 8
+        - 16
+        - 32
+        - 64
+      - stage: passage_compressor
+        optional: true
+        modules:
+        - component: longllmlingua
+    - node_line_name: post_retrieve_node_line
+      nodes:
+      - stage: prompt_maker
+        modules:
+        - component: fstring
+          prompt: "Read the passages and answer the given question.\n Question: {query}\n Passage: {retrieved_contents}\n Answer :"
+        - component: long_context_reorder
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+        - component: window_replacement
+          prompt: "Question: {query}\n Context: {retrieved_contents}\n Answer:"
+      - stage: generator
+        modules:
+        - component: vllm
+          model:
+            ordered:          # YAML value order IS the semantic order (size ladder)
+            - Qwen/Qwen2.5-1.5B-Instruct
+            - Qwen/Qwen2.5-3B-Instruct
+            - Qwen/Qwen2.5-7B-Instruct
+            - Qwen/Qwen2.5-14B-Instruct
+          gpu_memory_utilization: 0.4
+          dtype: bfloat16
+          max_tokens: 512
+          temperature:
+          - 0.0
+          - 0.3
+          - 0.7
+          - 1.0

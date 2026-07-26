@@ -1,0 +1,25 @@
+{
+  "_doc": "Maps module_type / embedding_model config keys to HuggingFace repos that must be cached locally.",
+
+  "module_models": {
+    "monot5": ["castorini/monot5-3b-msmarco-10k"],
+    "tart": ["facebook/tart-full-flan-t5-xl"],
+    "upr": ["t5-large"],
+    "sentence_transformer_reranker": ["cross-encoder/ms-marco-MiniLM-L-2-v2"],
+    "flag_embedding_reranker": ["BAAI/bge-reranker-large"],
+    "flag_embedding_llm_reranker": ["BAAI/bge-reranker-v2-gemma"],
+    "colbert_reranker": ["colbert-ir/colbertv2.0"],
+    "koreranker": ["Dongjin-kr/ko-reranker"],
+    "openvino_reranker": ["BAAI/bge-reranker-large"],
+    "longllmlingua": ["microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank"],
+    "llmlingua2": ["microsoft/llmlingua-2-bert-base-multilingual-cased-meetingbank"]
+  },
+
+  "embedding_models": {
+    "huggingface_all_mpnet_base_v2": "sentence-transformers/all-mpnet-base-v2",
+    "huggingface_baai_bge_small": "BAAI/bge-small-en-v1.5",
+    "huggingface_cointegrated_rubert_tiny2": "cointegrated/rubert-tiny2",
+    "huggingface_bge_m3": "BAAI/bge-m3",
+    "huggingface_multilingual_e5_large": "intfloat/multilingual-e5-large-instruct"
+  }
+}

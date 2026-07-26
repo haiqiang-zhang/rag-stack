@@ -1,0 +1,69 @@
+# Offline optimizer race on the REAL s44 data surrogate (GP-on-quality + analytic CM
+# for performance). Trained on the 3 just-produced s44 runs (agent+ax+greedy, 140 rows,
+# combined=deepeval_answer_correctness). Lets us iterate the agent cheaply (no GPU, no
+# judge) and only promote to e2e once it reliably beats the ax golden baseline.
+#
+#   python -m rag_stack benchmark --config configs/optimizer_benchmark/sweep_s44_surrogate.yaml
+#
+# NOTE: surrogate space is faiss_ivfpq (index_type fixed pq) to match the s44 data;
+# the live faiss_ivf [pq,flat] space is a superset — promote findings, not absolute HV.
+
+defaults:
+  gt_budget: 50
+  checkpoint_interval: 5
+  output_dir: tmp_outputs/optimizer_benchmark_results/s44_surrogate
+  seeds: [42, 43, 44]
+  auto_analyze: false
+
+synthetic_functions:
+- type: rag_stack_historical_surrogate
+  name: s44_surrogate
+  params:
+    yaml_path: configs/optimizer_benchmark/_surrogate_s44_space.yaml
+    historical_eval_dirs:
+    - benchmarks/surrogate_s44/agent
+    - benchmarks/surrogate_s44/ax
+    - benchmarks/surrogate_s44/greedy
+    # only sub-metrics present in ALL 3 runs (ax/greedy were trimmed to 1 judge metric)
+    # → keeps all 140 rows for the quality GP fit.
+    sub_metrics:
+    - deepeval_answer_correctness
+    - retrieval_token_recall
+    - retrieval_token_precision
+
+optimizers:
+# golden baseline — BoTorch-native mixed-kernel qNEHVI (the one to beat)
+- type: ax_qnehvi_mixedgp
+  name: ax_golden
+  params:
+    n_both_init: 10
+
+# the CURRENT agent (mixhier config, identical to _run_agent_s44.yaml) — the control
+- type: agent_qnehvi
+  name: agent_current
+  params:
+    n_both_init: 10
+    agent_model: deepseek-v4-flash
+
+# budget-aware greedy baseline ladder (n_iterations auto-injected from
+# gt_budget). forward = AutoRAG-faithful single pass; lookback = trade-off-
+# aware refinement passes. Together they attribute the gains:
+# lookback−forward = value of revisiting; agent−lookback = value of global BO.
+# NOTE: greedy is fully deterministic — under this sweep's shared seeds it
+# replays the identical trajectory per seed; prefer the single-seed
+# sweep_s44_surrogate_greedy.yaml for the greedy arm.
+- type: greedy
+  name: greedy_forward
+  params:
+    search_mode: forward
+    beam_width: 3
+    stage_weight: log
+
+- type: greedy
+  name: greedy_lookback
+  params:
+    search_mode: lookback
+    beam_width: 3
+    stage_weight: log
+    pass_budget_fraction: 0.6
+    max_passes: 8
